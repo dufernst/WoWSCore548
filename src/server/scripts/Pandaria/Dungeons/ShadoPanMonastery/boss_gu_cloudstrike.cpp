@@ -112,7 +112,7 @@ class boss_gu_cloudstrike : public CreatureScript
                 }
             }
 
-            void DoAction(const int32 action)
+            void DoAction( int32 action)
             {
                 if (action == ACTION_INTRO)
                 {
@@ -143,7 +143,7 @@ class boss_gu_cloudstrike : public CreatureScript
                         azureSerpent->AI()->DoAction(ACTION_AZURE_SERPENT_P_1);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI( uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -232,7 +232,7 @@ class npc_azure_serpent : public CreatureScript
                         gu->AI()->DoAction(ACTION_GU_P_3);
             }
 
-            void DoAction(const int32 action)
+            void DoAction( int32 action)
             {
                 switch (action)
                 {
@@ -280,7 +280,7 @@ class npc_azure_serpent : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI( uint32 diff)
             {
                 if (movementTimer != 0)
                 {
