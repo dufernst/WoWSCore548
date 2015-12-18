@@ -286,6 +286,16 @@ void AddSC_boss_sinestra();
 void AddSC_boss_theralion_and_valiona();
 void AddSC_instance_bastion_of_twilight();
 
+
+//Blackwing Descent(CATA RAID)
+void AddSC_blackwing_descent();
+void AddSC_boss_atramedes();
+void AddSC_boss_chimaeron();
+void AddSC_boss_magmaw();
+void AddSC_boss_maloriak();
+void AddSC_boss_omnotron_defence_system();
+void AddSC_instance_blackwing_descent();
+
 //Eastern Kingdoms Zones
 void AddSC_alterac_mountains();
 void AddSC_arathi_highlands();
@@ -1240,6 +1250,15 @@ void AddEasternKingdomsScripts()
 	AddSC_boss_sinestra();
 	AddSC_boss_theralion_and_valiona();
 	AddSC_instance_bastion_of_twilight();
+
+	//Blackwing Descent(CATA RAID)
+	AddSC_blackwing_descent();
+	AddSC_boss_atramedes();
+	AddSC_boss_chimaeron();
+	AddSC_boss_magmaw();
+	AddSC_boss_maloriak();
+	AddSC_boss_omnotron_defence_system();
+	AddSC_instance_blackwing_descent();
 
 	//Eastern Kingdoms Zones
 	AddSC_alterac_mountains();

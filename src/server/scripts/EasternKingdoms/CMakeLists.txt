@@ -74,6 +74,14 @@ set(scripts_STAT_SRCS
   EasternKingdoms/BlackrockMountain/MoltenCore/boss_sulfuron_harbinger.cpp
   EasternKingdoms/BlackrockMountain/MoltenCore/boss_magmadar.cpp
   EasternKingdoms/BlackrockMountain/MoltenCore/boss_shazzrah.cpp
+  EasternKingdoms/BlackrockMountain/BlackwingDescent/boss_magmaw.cpp
+  EasternKingdoms/BlackrockMountain/BlackwingDescent/boss_omnotron_defence_system.cpp
+  EasternKingdoms/BlackrockMountain/BlackwingDescent/boss_maloriak.cpp
+  EasternKingdoms/BlackrockMountain/BlackwingDescent/boss_chimaeron.cpp
+  EasternKingdoms/BlackrockMountain/BlackwingDescent/boss_atramedes.cpp
+  EasternKingdoms/BlackrockMountain/BlackwingDescent/instance_blackwing_descent.cpp
+  EasternKingdoms/BlackrockMountain/BlackwingDescent/blackwing_descent.cpp
+  EasternKingdoms/BlackrockMountain/BlackwingDescent/blackwing_descent.h
   EasternKingdoms/zone_isle_of_queldanas.cpp
   EasternKingdoms/ZulGurub/boss_grilek.cpp
   EasternKingdoms/ZulGurub/boss_hazzarah.cpp

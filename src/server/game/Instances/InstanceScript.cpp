@@ -323,6 +323,18 @@ void InstanceScript::DoSendNotifyToInstance(char const* format, ...)
     }
 }
 
+// Reset Achievement Criteria for all players in instance
+void InstanceScript::DoResetAchievementCriteria(AchievementCriteriaTypes type, uint64 miscValue1 /*= 0*/, uint64 miscValue2 /*= 0*/, bool evenIfCriteriaComplete /*= false*/)
+{
+	Map::PlayerList const &plrList = instance->GetPlayers();
+
+	if (!plrList.isEmpty())
+		for (Map::PlayerList::const_iterator i = plrList.begin(); i != plrList.end(); ++i)
+			if (Player* pPlayer = i->GetSource())
+				pPlayer->ResetAchievementCriteria(type, miscValue1, miscValue2, evenIfCriteriaComplete);
+}
+
+
 // Update Achievement Criteria for all players in instance
 void InstanceScript::DoUpdateAchievementCriteria(AchievementCriteriaTypes type, uint32 miscValue1 /*= 0*/, uint32 miscValue2 /*= 0*/, Unit* unit /*= NULL*/)
 {
