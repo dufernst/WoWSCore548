@@ -179,13 +179,13 @@ class boss_admiral_ripsnarl : public CreatureScript
                 instance->DoRemoveAurasDueToSpellOnPlayers(SPELL_RIPSNARL_ACHIEVEMENT);
             }
 
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 if (action == ACTION_COALESCE)
                     DoCastAOE(SPELL_RIPSNARL_ACHIEVEMENT);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -332,7 +332,7 @@ class npc_admiral_ripsnarl_vapor : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;

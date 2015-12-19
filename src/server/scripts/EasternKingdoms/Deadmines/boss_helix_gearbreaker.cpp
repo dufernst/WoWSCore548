@@ -138,7 +138,7 @@ class boss_helix_gearbreaker : public CreatureScript
                 Talk(SAY_DEATH);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -229,7 +229,7 @@ class npc_lumbering_oaf : public CreatureScript
                 events.Reset();
             }
      
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 switch (action)
                 {
@@ -271,7 +271,7 @@ class npc_lumbering_oaf : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
 
                 if (!UpdateVictim())
@@ -367,7 +367,7 @@ class npc_sticky_bomb : public CreatureScript
                 me->DespawnOrUnsummon();
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -461,7 +461,7 @@ class npc_helix_crew : public CreatureScript
                 me->DespawnOrUnsummon();
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
 
                 if (!pInstance)

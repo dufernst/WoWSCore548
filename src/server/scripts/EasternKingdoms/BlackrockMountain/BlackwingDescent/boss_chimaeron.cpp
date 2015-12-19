@@ -201,7 +201,7 @@ class boss_chimaeron : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -415,7 +415,7 @@ class npc_bile_o_tron_800 : public CreatureScript
             }
 
 
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 if (!pInstance)
                     return;
@@ -456,7 +456,7 @@ class npc_bile_o_tron_800 : public CreatureScript
                 events.ScheduleEvent(EVENT_NEXT_WAYPOINT, 1000);            
             }
 
-            void UpdateAI(const uint32 diff)
+            void updateai(const uint32 diff)
             {
                 events.Update(diff);
 

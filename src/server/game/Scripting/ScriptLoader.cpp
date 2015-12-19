@@ -221,6 +221,11 @@ void AddSC_the_scarlet_enclave_c5();
 //Shadowfang keep
 void AddSC_shadowfang_keep();                
 void AddSC_instance_shadowfang_keep();
+void AddSC_boss_baron_ashbury();
+void AddSC_boss_baron_silverlaine();
+void AddSC_boss_commander_springvale();
+void AddSC_boss_lord_godfrey();
+void AddSC_boss_lord_valden();
 
 //Stratholme
 void AddSC_boss_magistrate_barthilas();      
@@ -1197,8 +1202,13 @@ void AddEasternKingdomsScripts()
 	AddSC_the_scarlet_enclave_c5();
 
 	//Shadowfang keep
-	AddSC_shadowfang_keep();                
+	AddSC_shadowfang_keep();
 	AddSC_instance_shadowfang_keep();
+	AddSC_boss_baron_ashbury();
+	AddSC_boss_baron_silverlaine();
+	AddSC_boss_commander_springvale();
+	AddSC_boss_lord_godfrey();
+	AddSC_boss_lord_valden();
 
 	//Stratholme
 	AddSC_boss_magistrate_barthilas();      

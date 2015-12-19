@@ -107,7 +107,7 @@ class boss_foereaper5000 : public CreatureScript
                 bEnrage = false;
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;

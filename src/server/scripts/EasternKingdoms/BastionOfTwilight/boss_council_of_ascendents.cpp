@@ -397,7 +397,7 @@ class boss_feludius : public CreatureScript
                                 me->InterruptSpell(CURRENT_GENERIC_SPELL);
             }
 
-            void DoAction(const int32 action)
+			void updateai(const int32 action)
             {
                 switch (action)
                 {
@@ -439,7 +439,7 @@ class boss_feludius : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -615,7 +615,7 @@ class boss_ignacious : public CreatureScript
                                 me->InterruptSpell(CURRENT_CHANNELED_SPELL);
             }
 
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 switch (action)
                 {
@@ -706,7 +706,7 @@ class boss_ignacious : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -876,7 +876,7 @@ class boss_arion : public CreatureScript
                                 me->InterruptSpell(CURRENT_GENERIC_SPELL);
             }
 
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 switch(action)
                 {
@@ -912,7 +912,7 @@ class boss_arion : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1057,7 +1057,7 @@ class boss_terrastra: public CreatureScript
                 Talk(SAY_TERRASTRA_KILL);
             }
 
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 switch(action)
                 {
@@ -1094,7 +1094,7 @@ class boss_terrastra: public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1274,7 +1274,7 @@ class boss_elementium_monstrosity : public CreatureScript
                 me->DespawnOrUnsummon();
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1345,7 +1345,7 @@ public:
             DoCast(me, SPELL_LASHING_WINDS);
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
         };
 
@@ -1386,7 +1386,7 @@ public:
             
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             events.Update(diff);
             
@@ -1431,7 +1431,7 @@ class npc_ignacious_inferno_leap : public CreatureScript
 
             InstanceScript* pInstance;
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!pInstance)
                     me->DespawnOrUnsummon();
@@ -1545,7 +1545,7 @@ class npc_ignacious_flame_strike : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (me->HasAura(SPELL_FLAME_STRIKE_AURA))
                 {
@@ -1591,7 +1591,7 @@ class npc_liquid_ice : public CreatureScript
                 DoCast(me, SPELL_LIQUID_ICE);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
             };
 
@@ -1632,7 +1632,7 @@ class npc_ascendant_council_plume_stalker : public CreatureScript
                 events.ScheduleEvent(EVENT_LAVA_PLUME, 3000);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 events.Update(diff);
                 
@@ -1684,7 +1684,7 @@ class npc_eruption_target : public CreatureScript
                 events.ScheduleEvent(EVENT_ERUPTION_DMG, 3000);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 events.Update(diff);
                 

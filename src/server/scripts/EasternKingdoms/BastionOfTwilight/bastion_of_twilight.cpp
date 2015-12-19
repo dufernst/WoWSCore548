@@ -124,7 +124,7 @@ public:
             events.ScheduleEvent(EVENT_SHAPE_PORTAL, urand(10000, 15000));
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             if (!UpdateVictim())
                 return;
@@ -180,7 +180,7 @@ public:
             events.ScheduleEvent(EVENT_TWILIGHT_SHIFT, urand(5000, 15000));
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             if (!UpdateVictim())
                 return;
@@ -243,7 +243,7 @@ public:
             events.ScheduleEvent(EVENT_MIND_SEAR, urand(3000, 5000));
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             if (!UpdateVictim())
                 return;
@@ -296,7 +296,7 @@ public:
             events.Reset();
         }
 
-        void DoAction(const int32 action)
+        void doaction(const int32 action)
         {
             switch (action)
             {
@@ -330,7 +330,7 @@ public:
             }
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             events.Update(diff);
 

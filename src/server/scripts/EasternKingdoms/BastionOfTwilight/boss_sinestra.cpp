@@ -345,7 +345,7 @@ class boss_sinestra : public CreatureScript
                 return (pInstance->GetData(DATA_WIPE_COUNT) == 0);
             }
 
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 if (action == ACTION_EGG)
                 {
@@ -404,7 +404,7 @@ class boss_sinestra : public CreatureScript
                 return 0;
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -654,7 +654,7 @@ class npc_sinestra_calen : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (me->HealthBelowPct(35) && !bLowHealth)
                 {
@@ -742,7 +742,7 @@ class npc_sinestra_twilight_whelp : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 events.Update(diff);
 
@@ -830,7 +830,7 @@ class npc_sinestra_twilight_essence : public CreatureScript
                 events.ScheduleEvent(EVENT_ESSENCE_GROW, 30000);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 events.Update(diff);
 
@@ -879,7 +879,7 @@ class npc_sinestra_barrier_stalker : public CreatureScript
                 me->NearTeleportTo(addsPos[14].GetPositionX(), addsPos[14].GetPositionY(), addsPos[14].GetPositionZ(), addsPos[14].GetOrientation());
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
             }
         };
@@ -918,7 +918,7 @@ class npc_sinestra_shadow_orb : public CreatureScript
                 events.ScheduleEvent(EVENT_SELECT_TARGET, 2000);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 events.Update(diff);
                 
@@ -971,7 +971,7 @@ class npc_sinestra_pulsing_twilight_egg : public CreatureScript
                 DoCast(me, SPELL_TWILIGHT_CARAPACE);
             }
 
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 if (action == ACTION_START_EGG)
                 {
@@ -1024,7 +1024,7 @@ class npc_sinestra_twilight_spitecaller : public CreatureScript{
                 events.ScheduleEvent(EVENT_UNLEASH_ESSENCE, 8000);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1098,7 +1098,7 @@ class npc_sinestra_twilight_drake : public CreatureScript{
                 events.ScheduleEvent(EVENT_TWILIGHT_BREATH, urand(12000, 15000));
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
