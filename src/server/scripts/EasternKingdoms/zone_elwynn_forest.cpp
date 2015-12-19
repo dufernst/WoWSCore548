@@ -1,8 +1,4 @@
-/*
-* Copyright (C) 2013 Skymist Project
-*
-* This file is NOT free software. You may NOT copy, redistribute it or modify it.
-*/
+
 
 /* ScriptData
 SDName: Elwynn_Forest
