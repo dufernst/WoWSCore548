@@ -314,6 +314,16 @@ void AddSC_boss_general_umbriss();
 void AddSC_grim_batol();
 void AddSC_instance_grim_batol();
 
+//The Throne of Tides (CATA DUNGEON)
+void AddSC_boss_commander_ulthok();
+void AddSC_boss_lady_nazjar();
+void AddSC_boss_erunak_stonespeaker();
+void AddSC_boss_ozumat();
+void AddSC_instance_throne_of_the_tides();
+void AddSC_throne_of_the_tides();
+
+
+
 
 //Eastern Kingdoms Zones
 void AddSC_alterac_mountains();
@@ -1305,6 +1315,13 @@ void AddEasternKingdomsScripts()
 	AddSC_grim_batol();
 	AddSC_instance_grim_batol();
 
+	//The Throne of Tides (CATA DUNGEON)
+	AddSC_boss_commander_ulthok();
+	AddSC_boss_lady_nazjar();
+	AddSC_boss_erunak_stonespeaker();
+	AddSC_boss_ozumat();
+	AddSC_instance_throne_of_the_tides();
+	AddSC_throne_of_the_tides();
 
 	//Eastern Kingdoms Zones
 	AddSC_alterac_mountains();
