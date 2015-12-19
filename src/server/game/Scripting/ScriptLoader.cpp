@@ -349,6 +349,7 @@ void AddSC_western_plaguelands();
 void AddSC_westfall();
 void AddSC_wetlands();
 void AddSC_dun_morogh();
+void AddSC_elwyn_forest();
 
 //kalimdor
 
@@ -1348,6 +1349,7 @@ void AddEasternKingdomsScripts()
 	AddSC_westfall();
 	AddSC_wetlands();
 	AddSC_dun_morogh();
+	AddSC_elwyn_forest();
 #endif
 }
 

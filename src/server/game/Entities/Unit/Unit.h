@@ -1580,7 +1580,11 @@ class Unit : public WorldObject
                                      uint32 spellTypeMask, uint32 spellPhaseMask, uint32 hitMask, Spell* spell,
                                      DamageInfo* damageInfo, HealInfo* healInfo);
         void TriggerAurasProcOnEvent(ProcEventInfo& eventInfo, AuraApplicationList& procAuras);
-
+		void HandleEmote(uint32 emote_id);
+		void HandleEmoteState(uint32 emote_id);
+		uint32 GetStoredEmoteState() { return m_oldEmoteState; }
+		uint32 GetEmoteState() { return GetUInt32Value(UNIT_FIELD_NPC_EMOTESTATE); }
+		void SetStoredEmoteState(uint32 emoteState) { m_oldEmoteState = emoteState; }
         void HandleEmoteCommand(uint32 anim_id);
         void AttackerStateUpdate (Unit* victim, WeaponAttackType attType = BASE_ATTACK, bool extra = false);
 
@@ -2420,6 +2424,9 @@ class Unit : public WorldObject
         bool IsAlwaysDetectableFor(WorldObject const* seer) const;
 
         void DisableSpline();
+
+
+		uint32 m_oldEmoteState; // Used to store and restore old emote states for creatures.
 
     private:
         bool IsTriggeredAtSpellProcEvent(Unit* victim, Aura* aura, SpellInfo const* procSpell, uint32 procFlag, uint32 procExtra, WeaponAttackType attType, bool isVictim, bool active, SpellProcEventEntry const* & spellProcEvent);

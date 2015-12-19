@@ -220,6 +220,7 @@ set(scripts_STAT_SRCS
   EasternKingdoms/ThroneOfTheTides/throne_of_the_tides.cpp
   EasternKingdoms/ThroneOfTheTides/throne_of_the_tides.h
   EasternKingdoms/zone_dun_morogh.cpp
+  EasternKingdoms/zone_elwynn_forest.cpp
 )
 
 message("  -> Prepared: Eastern Kingdoms")

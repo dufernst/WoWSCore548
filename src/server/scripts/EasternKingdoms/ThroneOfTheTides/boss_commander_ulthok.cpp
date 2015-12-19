@@ -74,7 +74,7 @@ class boss_commander_ulthok : public CreatureScript
                 _Reset();
             }
 
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 if (action == ACTION_COMMANDER_ULTHOK_START_EVENT)
                 {
@@ -102,7 +102,7 @@ class boss_commander_ulthok : public CreatureScript
                 _JustDied();
             }
 
-            void UpdateAI(const uint32 diff)
+            void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;

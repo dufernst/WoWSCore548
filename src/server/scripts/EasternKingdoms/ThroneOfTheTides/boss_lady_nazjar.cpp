@@ -240,7 +240,7 @@ class boss_lady_nazjar : public CreatureScript
                 events.RescheduleEvent(EVENT_SHOCK_BLAST, urand(6000,12000));
             }
 
-            void UpdateAI(const uint32 diff)
+            void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
