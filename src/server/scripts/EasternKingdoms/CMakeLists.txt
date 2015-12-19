@@ -219,6 +219,7 @@ set(scripts_STAT_SRCS
   EasternKingdoms/ThroneOfTheTides/instance_throne_of_the_tides.cpp
   EasternKingdoms/ThroneOfTheTides/throne_of_the_tides.cpp
   EasternKingdoms/ThroneOfTheTides/throne_of_the_tides.h
+  EasternKingdoms/zone_dun_morogh.cpp
 )
 
 message("  -> Prepared: Eastern Kingdoms")

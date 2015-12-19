@@ -348,6 +348,7 @@ void AddSC_undercity();
 void AddSC_western_plaguelands();
 void AddSC_westfall();
 void AddSC_wetlands();
+void AddSC_dun_morogh();
 
 //kalimdor
 
@@ -1346,6 +1347,7 @@ void AddEasternKingdomsScripts()
 	AddSC_western_plaguelands();
 	AddSC_westfall();
 	AddSC_wetlands();
+	AddSC_dun_morogh();
 #endif
 }
 
