@@ -811,6 +811,14 @@ void AddSC_zangarmarsh();
 
 // Maelstrom
 
+//The Stone Core
+void AddSC_boss_corborus();
+void AddSC_boss_high_priestess_azil();
+void AddSC_boss_ozruk();
+void AddSC_boss_slabhide();
+void AddSC_instance_the_stonecore();
+void AddSC_the_stonecore();
+
 //Maelstrom Zones
 void AddSC_kezan();
 void AddSC_lost_isle();
@@ -1808,6 +1816,16 @@ void AddNorthrendScripts()
 void AddMaelstromScripts()
 {
 #ifdef SCRIPTS
+
+	//The Stone Core
+	AddSC_boss_corborus();
+	AddSC_boss_high_priestess_azil();
+	AddSC_boss_ozruk();
+	AddSC_boss_slabhide();
+	AddSC_instance_the_stonecore();
+	AddSC_the_stonecore();
+
+	//Maelstrom Zones
 	AddSC_kezan();
 	AddSC_lost_isle();
 #endif
