@@ -301,6 +301,15 @@ void AddSC_boss_maloriak();
 void AddSC_boss_omnotron_defence_system();
 void AddSC_instance_blackwing_descent();
 
+//Grim Batol (CATA DUNGEON)
+void AddSC_boss_drahga_shadowburner();
+void AddSC_boss_erudax();
+void AddSC_boss_forgemaster_throngus();
+void AddSC_boss_general_umbriss();
+void AddSC_grim_batol();
+void AddSC_instance_grim_batol();
+
+
 //Eastern Kingdoms Zones
 void AddSC_alterac_mountains();
 void AddSC_arathi_highlands();
@@ -1269,6 +1278,15 @@ void AddEasternKingdomsScripts()
 	AddSC_boss_maloriak();
 	AddSC_boss_omnotron_defence_system();
 	AddSC_instance_blackwing_descent();
+
+	//Grim Batol (CATA DUNGEON)
+	AddSC_boss_drahga_shadowburner();
+	AddSC_boss_erudax();
+	AddSC_boss_forgemaster_throngus();
+	AddSC_boss_general_umbriss();
+	AddSC_grim_batol();
+	AddSC_instance_grim_batol();
+
 
 	//Eastern Kingdoms Zones
 	AddSC_alterac_mountains();
