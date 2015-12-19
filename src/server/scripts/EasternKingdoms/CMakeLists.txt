@@ -146,9 +146,14 @@ set(scripts_STAT_SRCS
   EasternKingdoms/SunwellPlateau/sunwell_plateau.cpp
   EasternKingdoms/SunwellPlateau/boss_felmyst.cpp
   EasternKingdoms/zone_stranglethorn_vale.cpp
+  EasternKingdoms/Deadmines/boss_glubtok.cpp
+  EasternKingdoms/Deadmines/boss_helix_gearbreaker.cpp
+  EasternKingdoms/Deadmines/boss_foereaper5000.cpp
+  EasternKingdoms/Deadmines/boss_admiral_ripsnarl.cpp
+  EasternKingdoms/Deadmines/boss_captain_cookie.cpp
+  EasternKingdoms/Deadmines/boss_vanessa_vancleef.cpp
   EasternKingdoms/Deadmines/deadmines.h
   EasternKingdoms/Deadmines/deadmines.cpp
-  EasternKingdoms/Deadmines/boss_mr_smite.cpp
   EasternKingdoms/Deadmines/instance_deadmines.cpp
   EasternKingdoms/zone_duskwood.cpp
   EasternKingdoms/zone_undercity.cpp

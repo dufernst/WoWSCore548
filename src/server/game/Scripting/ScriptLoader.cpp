@@ -163,7 +163,12 @@ void AddSC_instance_blackwing_lair();
 //Deadmines
 void AddSC_deadmines();                     
 void AddSC_instance_deadmines();
-void AddSC_boss_mr_smite();
+void AddSC_boss_admiral_ripsnarl();
+void AddSC_boss_captain_cookie();
+void AddSC_boss_foereaper5000();
+void AddSC_boss_glubtok();
+void AddSC_boss_helix_gearbreaker();
+void AddSC_boss_vanessa_vancleef();
 
 //Gnomeregan
 void AddSC_gnomeregan();                    
@@ -1126,8 +1131,13 @@ void AddEasternKingdomsScripts()
 
 	//Deadmines
 	AddSC_deadmines();                      
-	AddSC_boss_mr_smite();
 	AddSC_instance_deadmines();
+	AddSC_boss_admiral_ripsnarl();
+	AddSC_boss_captain_cookie();
+	AddSC_boss_foereaper5000();
+	AddSC_boss_glubtok();
+	AddSC_boss_helix_gearbreaker();
+	AddSC_boss_vanessa_vancleef();
 
 	//Gnomeregan
 	AddSC_gnomeregan();                     
