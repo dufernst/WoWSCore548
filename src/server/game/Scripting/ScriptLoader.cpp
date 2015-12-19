@@ -350,6 +350,7 @@ void AddSC_westfall();
 void AddSC_wetlands();
 void AddSC_dun_morogh();
 void AddSC_elwyn_forest();
+void AddSC_silvermoon_city();
 
 //kalimdor
 
@@ -1350,6 +1351,8 @@ void AddEasternKingdomsScripts()
 	AddSC_wetlands();
 	AddSC_dun_morogh();
 	AddSC_elwyn_forest();
+	AddSC_silvermoon_city();
+
 #endif
 }
 
