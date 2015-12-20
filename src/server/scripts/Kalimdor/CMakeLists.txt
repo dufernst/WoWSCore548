@@ -138,6 +138,30 @@ set(scripts_STAT_SRCS
   Kalimdor/CavernsOfTime/DragonSoul/instance_dragon_soul.cpp
   Kalimdor/CavernsOfTime/DragonSoul/dragon_soul.cpp
   Kalimdor/CavernsOfTime/DragonSoul/dragon_soul.h
+  
+  Kalimdor/CavernsOfTime/EndTime/boss_echo_of_tyrande.cpp
+  Kalimdor/CavernsOfTime/EndTime/boss_echo_of_baine.cpp
+  Kalimdor/CavernsOfTime/EndTime/boss_echo_of_sylvanas.cpp
+  Kalimdor/CavernsOfTime/EndTime/boss_echo_of_jaina.cpp
+  Kalimdor/CavernsOfTime/EndTime/boss_murozond.cpp
+  Kalimdor/CavernsOfTime/EndTime/end_time_teleport.cpp
+  Kalimdor/CavernsOfTime/EndTime/instance_end_time.cpp
+  Kalimdor/CavernsOfTime/EndTime/end_time.cpp
+  Kalimdor/CavernsOfTime/EndTime/end_time.h
+  Kalimdor/CavernsOfTime/WellofEternity/boss_perotharn.cpp
+  Kalimdor/CavernsOfTime/WellofEternity/boss_queen_azshara.cpp
+  Kalimdor/CavernsOfTime/WellofEternity/boss_mannoroth.cpp
+  Kalimdor/CavernsOfTime/WellofEternity/instance_well_of_eternity.cpp
+  Kalimdor/CavernsOfTime/WellofEternity/well_of_eternity_teleport.cpp
+  Kalimdor/CavernsOfTime/WellofEternity/well_of_eternity.cpp
+  Kalimdor/CavernsOfTime/WellofEternity/well_of_eternity.h
+  Kalimdor/CavernsOfTime/HourofTwilight/boss_arcurion.cpp
+  Kalimdor/CavernsOfTime/HourofTwilight/boss_asira_dawnslayer.cpp
+  Kalimdor/CavernsOfTime/HourofTwilight/boss_archbishop_benedictus.cpp
+  Kalimdor/CavernsOfTime/HourofTwilight/instance_hour_of_twilight.cpp
+  Kalimdor/CavernsOfTime/HourofTwilight/hour_of_twilight.cpp
+  Kalimdor/CavernsOfTime/HourofTwilight/hour_of_twilight.h
+
 )
 
 message("  -> Prepared: Kalimdor")
