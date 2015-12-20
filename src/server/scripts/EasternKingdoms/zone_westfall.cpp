@@ -103,7 +103,7 @@ public:
             }
         }
 
-        void UpdateAI(const uint32 diff)
+        void updateai(const uint32 diff)
         {
             if (SummonTimer < diff)
             {
@@ -328,7 +328,7 @@ public:
                 }
             }
         }
-        void UpdateAI(const uint32 diff)
+        void updateai(const uint32 diff)
         {
             if (TextTimer < diff)
             {
@@ -632,7 +632,7 @@ public:
             }
         }
 
-        void UpdateAI(const uint32 diff)
+        void updateai(const uint32 diff)
         {
             if (EntryTime <= diff)
             {
@@ -970,7 +970,7 @@ public:
             }
         }
 
-        void UpdateAI(const uint32 diff)
+        void updateai(const uint32 diff)
         {
             if (SummonTimer < diff)
             {
@@ -1168,7 +1168,7 @@ public:
             }
         }
 
-        void UpdateAI(const uint32 diff)
+        void updateai(const uint32 diff)
         {
             if (SummonTimer < diff)
             {
@@ -1502,7 +1502,7 @@ class npc_rise_br : public CreatureScript
             }
         }
 
-        void UpdateAI(const uint32 diff)
+        void updateai(const uint32 diff)
         {
             if (EventStarted)
             {
@@ -1777,7 +1777,7 @@ public:
             ThrowTimer = 4000;
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             if (timer_DoFire)
             {
@@ -1834,7 +1834,7 @@ public:
             }
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             /*
             if (StopFireTimer <= diff)
@@ -1948,7 +1948,7 @@ public:
             }
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             if (TextTimer < diff)
             {
@@ -2066,7 +2066,7 @@ class npc_hungry_hobo : public CreatureScript
             me->SetStandState(UNIT_STAND_STATE_SIT);
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             if (Miam < diff)
             {

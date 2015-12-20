@@ -191,6 +191,30 @@ class InstanceScript : public ZoneScript
         // Remove Auras due to Spell on all players in instance
         void DoRemoveAurasDueToSpellOnPlayers(uint32 spell);
 
+
+		// Add aura on all players in instance
+		void DoAddAuraOnPlayers(uint32 spell);
+
+
+		// Remove aura from stack on all players in instance
+		void DoRemoveAuraFromStackOnPlayers(uint32 spell, uint64 casterGUID = 0, AuraRemoveMode mode = AURA_REMOVE_BY_DEFAULT, uint32 num = 1);
+
+		void DoModifyPlayerCurrencies(uint32 id, int32 value);
+
+
+		// dosetAlternatePoweronplayers
+		void DoSetAlternatePowerOnPlayers(int32 value);
+
+
+		//Dostartmovie
+		void DoStartMovie(uint32 movieId);
+
+		//dokilledmonstercredit
+		void DoKilledMonsterKredit(uint32 questId, uint32 entry, uint64 guid = 0);
+
+		//Donearteleportplayers
+		void DoNearTeleportPlayers(const Position pos, bool casting = false);
+
         // Cast spell on all players in instance
         void DoCastSpellOnPlayers(uint32 spell);
 

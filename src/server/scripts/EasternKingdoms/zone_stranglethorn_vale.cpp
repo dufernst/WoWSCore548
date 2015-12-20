@@ -65,7 +65,7 @@ public:
 
         void EnterCombat(Unit* /*who*/) {}
 
-        void UpdateAI(const uint32 diff)
+        void updateai(const uint32 diff)
         {
             if (bReset)
             {
@@ -168,7 +168,7 @@ public:
         {
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
         }
     };
@@ -226,7 +226,7 @@ public:
         {
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
         }
     };
@@ -277,7 +277,7 @@ public:
         {
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
         }
     };

@@ -114,7 +114,7 @@ public:
                 Playemote garde a vous*/
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             if (IntroTimer)
             {
@@ -208,7 +208,7 @@ public:
             }
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             if (!timer || !phase)
                 return;
@@ -268,7 +268,7 @@ public:
             hasPassenger = false;
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             if (hasPassenger)
                 return;
@@ -355,7 +355,7 @@ public:
                     damage = 0;
         }
 
-        void UpdateAI(const uint32 diff)
+		void updateai(const uint32 diff)
         {
             if (hasTarget)
             {

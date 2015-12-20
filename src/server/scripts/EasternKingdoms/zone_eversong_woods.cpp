@@ -165,7 +165,7 @@ public:
 
         void EnterCombat(Unit* /*who*/) {}
 
-        void UpdateAI(uint32 const diff)
+        void updateai(uint32 const diff)
         {
             if (questPhase == 1)
             {
@@ -314,7 +314,7 @@ public:
 
         void EnterCombat(Unit* /*who*/) {}
 
-        void UpdateAI(uint32 const diff)
+		void updateai(uint32 const diff)
         {
             // Quest accepted but object not activated, object despawned (if in sync 1 minute!)
             if (questPhase == 1)
@@ -594,7 +594,7 @@ public:
                     player->FailQuest(QUEST_POWERING_OUR_DEFENSES);
         }
 
-        void UpdateAI(uint32 const diff)
+		void updateai(uint32 const diff)
         {
             if (EndTimer < diff && Progress)
             {

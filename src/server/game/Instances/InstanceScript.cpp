@@ -397,6 +397,81 @@ void InstanceScript::DoCastSpellOnPlayers(uint32 spell)
                 player->CastSpell(player, spell, true);
 }
 
+// Add aura on all players in instance
+void InstanceScript::DoAddAuraOnPlayers(uint32 spell)
+{
+	Map::PlayerList const &PlayerList = instance->GetPlayers();
+
+	if (!PlayerList.isEmpty())
+		for (Map::PlayerList::const_iterator i = PlayerList.begin(); i != PlayerList.end(); ++i)
+			if (Player* player = i->GetSource())
+				player->AddAura(spell, player);
+}
+
+void InstanceScript::DoSetAlternatePowerOnPlayers(int32 value)
+{
+	Map::PlayerList const &plrList = instance->GetPlayers();
+
+	if (!plrList.isEmpty())
+		for (Map::PlayerList::const_iterator i = plrList.begin(); i != plrList.end(); ++i)
+			if (Player* pPlayer = i->GetSource())
+				pPlayer->SetPower(POWER_ALTERNATE_POWER, value);
+}
+
+// Remove aura from stack on all players in instance
+void InstanceScript::DoRemoveAuraFromStackOnPlayers(uint32 spell, uint64 casterGUID, AuraRemoveMode mode, uint32 num)
+{
+	Map::PlayerList const& plrList = instance->GetPlayers();
+	if (!plrList.isEmpty())
+		for (Map::PlayerList::const_iterator itr = plrList.begin(); itr != plrList.end(); ++itr)
+			if (Player* pPlayer = itr->GetSource())
+				pPlayer->RemoveAuraFromStack(spell, casterGUID, mode);
+}
+
+
+
+void InstanceScript::DoModifyPlayerCurrencies(uint32 id, int32 value)
+{
+	Map::PlayerList const &plrList = instance->GetPlayers();
+
+	if (!plrList.isEmpty())
+		for (Map::PlayerList::const_iterator i = plrList.begin(); i != plrList.end(); ++i)
+			if (Player* pPlayer = i->GetSource())
+				pPlayer->ModifyCurrency(id, value);
+}
+
+void InstanceScript::DoNearTeleportPlayers(const Position pos, bool casting /*=false*/)
+{
+	Map::PlayerList const &plrList = instance->GetPlayers();
+
+	if (!plrList.isEmpty())
+		for (Map::PlayerList::const_iterator i = plrList.begin(); i != plrList.end(); ++i)
+			if (Player* pPlayer = i->GetSource())
+				pPlayer->NearTeleportTo(pos.GetPositionX(), pos.GetPositionY(), pos.GetPositionZ(), pos.GetOrientation(), casting);
+}
+
+void InstanceScript::DoStartMovie(uint32 movieId)
+{
+	Map::PlayerList const &plrList = instance->GetPlayers();
+
+	if (!plrList.isEmpty())
+		for (Map::PlayerList::const_iterator i = plrList.begin(); i != plrList.end(); ++i)
+			if (Player* pPlayer = i->GetSource())
+				pPlayer->SendMovieStart(movieId);
+
+}
+
+void InstanceScript::DoKilledMonsterKredit(uint32 questId, uint32 entry, uint64 guid/* =0*/)
+{
+	Map::PlayerList const &plrList = instance->GetPlayers();
+
+	if (!plrList.isEmpty())
+		for (Map::PlayerList::const_iterator i = plrList.begin(); i != plrList.end(); ++i)
+			if (Player* pPlayer = i->GetSource())
+				if (pPlayer->GetQuestStatus(questId) == QUEST_STATUS_INCOMPLETE)
+					pPlayer->KilledMonsterCredit(entry, guid);
+}
+
 bool InstanceScript::CheckAchievementCriteriaMeet(uint32 criteria_id, Player const* /*source*/, Unit const* /*target*/ /*= NULL*/, uint32 /*miscvalue1*/ /*= 0*/)
 {
     TC_LOG_ERROR("misc", "Achievement system call InstanceScript::CheckAchievementCriteriaMeet but instance script for map %u not have implementation for achievement criteria %u",

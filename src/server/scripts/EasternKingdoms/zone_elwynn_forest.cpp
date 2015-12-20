@@ -162,7 +162,7 @@ public:
             me->GetMotionMaster()->MoveTargetedHome();
         }
 
-        void UpdateAI(uint32 const diff)
+		void updateai(uint32 const diff)
         {
             if (!UpdateVictim())
                 return;
@@ -227,7 +227,7 @@ public:
             me->GetMotionMaster()->MoveTargetedHome();
         }
 
-        void UpdateAI(uint32 const diff)
+		void updateai(uint32 const diff)
         {
             if (!me->HasAura(SPELL_FORTITUDE) && !me->HasUnitState(UNIT_STATE_CASTING))
                 DoCast(me, SPELL_FORTITUDE);
@@ -313,7 +313,7 @@ public:
             }
         }
 
-        void UpdateAI(uint32 const diff)
+		void updateai(uint32 const diff)
         {
             if (AttackTimer <= diff)
             {
@@ -371,7 +371,7 @@ public:
             }
         }
 
-        void UpdateAI(uint32 const diff)
+		void updateai(uint32 const diff)
         {
             if (IsHealed)
             {
@@ -597,7 +597,7 @@ public:
             }
         }
 
-        void UpdateAI(uint32 const diff)
+		void updateai(uint32 const diff)
         {
             if (Eaten)
             {
