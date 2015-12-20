@@ -322,17 +322,7 @@ void AddSC_boss_ozumat();
 void AddSC_instance_throne_of_the_tides();
 void AddSC_throne_of_the_tides();
 
-//Dragon Soul (CATA RAID)
-void AddSC_instance_dragon_soul(); 
-void AddSC_dragon_soul();
-void AddSC_boss_morchok();
-void AddSC_boss_yorsahj_the_unsleeping();
-void AddSC_boss_warlord_zonozz();
-void AddSC_boss_hagara_the_stormbinder();
-void AddSC_boss_ultraxion();
-void AddSC_boss_warmaster_blackhorn();
-void AddSC_spine_of_deathwing();
-void AddSC_madness_of_deathwing();
+
 
 
 //Eastern Kingdoms Zones
@@ -463,6 +453,47 @@ void AddSC_boss_earthrager_ptah();
 void AddSC_boss_anraphet();
 void AddSC_instance_firelands();
 void AddSC_boss_alysrazor();
+
+
+//Dragon Soul (CATA RAID)
+void AddSC_instance_dragon_soul();
+void AddSC_dragon_soul();
+void AddSC_boss_morchok();
+void AddSC_boss_yorsahj_the_unsleeping();
+void AddSC_boss_warlord_zonozz();
+void AddSC_boss_hagara_the_stormbinder();
+void AddSC_boss_ultraxion();
+void AddSC_boss_warmaster_blackhorn();
+void AddSC_spine_of_deathwing();
+void AddSC_madness_of_deathwing();
+
+
+// End Time
+void AddSC_instance_end_time(); 
+void AddSC_end_time();
+void AddSC_end_time_teleport();
+void AddSC_boss_echo_of_tyrande();
+void AddSC_boss_echo_of_sylvanas();
+void AddSC_boss_echo_of_baine();
+void AddSC_boss_echo_of_jaina();
+void AddSC_boss_murozond();
+
+
+// Well of Eternity
+void AddSC_instance_well_of_eternity(); 
+void AddSC_well_of_eternity();
+void AddSC_well_of_eternity_teleport();
+void AddSC_boss_perotharn();
+void AddSC_boss_queen_azshara();
+void AddSC_boss_mannoroth();
+
+
+// Hour of Twilight
+void AddSC_instance_hour_of_twilight(); 
+void AddSC_hour_of_twilight();
+void AddSC_boss_arcurion();
+void AddSC_boss_asira_dawnslayer();
+void AddSC_boss_archbishop_benedictus();
 
 
 //Kalimdor Zones
@@ -1336,16 +1367,7 @@ void AddEasternKingdomsScripts()
 	AddSC_instance_throne_of_the_tides();
 	AddSC_throne_of_the_tides();
 
-	AddSC_instance_dragon_soul(); 
-	AddSC_dragon_soul();
-	AddSC_boss_morchok();
-	AddSC_boss_yorsahj_the_unsleeping();
-	AddSC_boss_warlord_zonozz();
-	AddSC_boss_hagara_the_stormbinder();
-	AddSC_boss_ultraxion();
-	AddSC_boss_warmaster_blackhorn();
-	AddSC_spine_of_deathwing();
-	AddSC_madness_of_deathwing();
+	
 
 	//Eastern Kingdoms Zones
 	AddSC_alterac_mountains();
@@ -1499,13 +1521,53 @@ void AddKalimdorScripts()
 	AddSC_ungoro_crater();
 	AddSC_winterspring();
 
+	//halls of origination(CATA DUNGEON)
 	AddSC_instance_halls_of_origination();
 	AddSC_boss_temple_guardian_anhuur();
 	AddSC_boss_earthrager_ptah();
 	AddSC_boss_anraphet();
 
+	//Firelands(CATA RAID)
 	AddSC_instance_firelands();
 	AddSC_boss_alysrazor();
+
+	//Dragon Soul(CATA RAID)
+	AddSC_instance_dragon_soul();
+	AddSC_dragon_soul();
+	AddSC_boss_morchok();
+	AddSC_boss_yorsahj_the_unsleeping();
+	AddSC_boss_warlord_zonozz();
+	AddSC_boss_hagara_the_stormbinder();
+	AddSC_boss_ultraxion();
+	AddSC_boss_warmaster_blackhorn();
+	AddSC_spine_of_deathwing();
+	AddSC_madness_of_deathwing();
+
+	// End Time(CATA DUNGEON)
+    AddSC_instance_end_time(); 
+	AddSC_end_time();
+	AddSC_end_time_teleport();
+	AddSC_boss_echo_of_tyrande();
+	AddSC_boss_echo_of_sylvanas();
+	AddSC_boss_echo_of_baine();
+	AddSC_boss_echo_of_jaina();
+	AddSC_boss_murozond();
+
+	// Well of Eternity(CATA DUNGEON)
+	AddSC_instance_well_of_eternity(); 
+	AddSC_well_of_eternity();
+	AddSC_well_of_eternity_teleport();
+	AddSC_boss_perotharn();
+	AddSC_boss_queen_azshara();
+	AddSC_boss_mannoroth();
+
+	// Hour of Twilight (CATA DUNGEON)
+	AddSC_instance_hour_of_twilight(); 
+	AddSC_hour_of_twilight();
+	AddSC_boss_arcurion();
+	AddSC_boss_asira_dawnslayer();
+	AddSC_boss_archbishop_benedictus();
+
 #endif
 }
 
