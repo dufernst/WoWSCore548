@@ -3954,21 +3954,20 @@ void Unit::RemoveAurasDueToSpell(uint32 spellId, uint64 casterGUID, uint32 reqEf
     }
 }
 
-void Unit::RemoveAuraFromStack(uint32 spellId, uint64 casterGUID, AuraRemoveMode removeMode)
+void Unit::RemoveAuraFromStack(uint32 spellId, uint64 casterGUID, AuraRemoveMode removeMode, int32 num) //changed this for future use.
 {
-    AuraMapBoundsNonConst range = m_ownedAuras.equal_range(spellId);
-    for (AuraMap::iterator iter = range.first; iter != range.second;)
-    {
-        Aura* aura = iter->second;
-        if ((aura->GetType() == UNIT_AURA_TYPE)
-                && (!casterGUID || aura->GetCasterGUID() == casterGUID))
-        {
-            aura->ModStackAmount(-1, removeMode);
-            return;
-        }
-        else
-            ++iter;
-    }
+	for (AuraMap::iterator iter = m_ownedAuras.lower_bound(spellId); iter != m_ownedAuras.upper_bound(spellId);)
+	{
+		Aura* aura = iter->second;
+		if ((aura->GetType() == UNIT_AURA_TYPE)
+			&& (!casterGUID || aura->GetCasterGUID() == casterGUID))
+		{
+			aura->ModStackAmount(-num, removeMode);
+			return;
+		}
+		else
+			++iter;
+	}
 }
 
 void Unit::RemoveAurasDueToSpellByDispel(uint32 spellId, uint32 dispellerSpellId, uint64 casterGUID, Unit* dispeller, uint8 chargesRemoved/*= 1*/)

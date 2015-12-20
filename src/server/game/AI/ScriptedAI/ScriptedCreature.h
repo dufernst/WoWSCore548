@@ -407,6 +407,25 @@ class BossAI : public ScriptedAI
             return false;
         }
 
+		bool CheckInArea(const uint32 diff, uint32 areaId) //use this for bosses that should evade if your not close to them.
+		{
+			if (_checkareaTimer <= diff)
+				_checkareaTimer = 3000;
+			else
+			{
+				_checkareaTimer -= diff;
+				return true;
+			}
+
+			if (me->GetAreaId() != areaId)
+			{
+				EnterEvadeMode();
+				return false;
+			}
+
+			return true;
+		}
+
         bool CheckBoundary(Unit* who);
         void TeleportCheaters();
 
@@ -416,6 +435,7 @@ class BossAI : public ScriptedAI
     private:
         BossBoundaryMap const* const _boundary;
         uint32 const _bossId;
+		uint32 _checkareaTimer;
 };
 
 class WorldBossAI : public ScriptedAI

@@ -468,7 +468,20 @@ void AddSC_spine_of_deathwing();
 void AddSC_madness_of_deathwing();
 
 
-// End Time
+// Firelands(CATA RAID)
+void AddSC_instance_firelands(); 
+void AddSC_firelands();
+void AddSC_boss_shannox();
+void AddSC_boss_bethtilac();
+void AddSC_boss_alysrazor();
+void AddSC_boss_lord_rhyolith();
+void AddSC_boss_baleroc();
+void AddSC_boss_majordomo_staghelm();
+void AddSC_boss_ragnaros_firelands();
+
+
+
+// End Time (CATA DUNGEON)
 void AddSC_instance_end_time(); 
 void AddSC_end_time();
 void AddSC_end_time_teleport();
@@ -479,7 +492,7 @@ void AddSC_boss_echo_of_jaina();
 void AddSC_boss_murozond();
 
 
-// Well of Eternity
+// Well of Eternity (CATA DUNGEON)
 void AddSC_instance_well_of_eternity(); 
 void AddSC_well_of_eternity();
 void AddSC_well_of_eternity_teleport();
@@ -488,7 +501,7 @@ void AddSC_boss_queen_azshara();
 void AddSC_boss_mannoroth();
 
 
-// Hour of Twilight
+// Hour of Twilight (CATA DUNGEON)
 void AddSC_instance_hour_of_twilight(); 
 void AddSC_hour_of_twilight();
 void AddSC_boss_arcurion();
@@ -1567,6 +1580,17 @@ void AddKalimdorScripts()
 	AddSC_boss_arcurion();
 	AddSC_boss_asira_dawnslayer();
 	AddSC_boss_archbishop_benedictus();
+
+	// Firelands (CATA RAID)
+	AddSC_instance_firelands(); 
+	AddSC_firelands();
+	AddSC_boss_shannox();
+	AddSC_boss_bethtilac();
+	AddSC_boss_alysrazor();
+	AddSC_boss_lord_rhyolith();
+	AddSC_boss_baleroc();
+	AddSC_boss_majordomo_staghelm();
+	AddSC_boss_ragnaros_firelands();
 
 #endif
 }
