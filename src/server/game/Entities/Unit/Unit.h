@@ -556,7 +556,9 @@ enum UnitState
     UNIT_STATE_CHASE_MOVE      = 0x04000000,
     UNIT_STATE_FOLLOW_MOVE     = 0x08000000,
     UNIT_STATE_IGNORE_PATHFINDING = 0x10000000,                 // do not use pathfinding in any MovementGenerator
-    UNIT_STATE_UNATTACKABLE    = UNIT_STATE_IN_FLIGHT,
+	UNIT_STATE_IGNORE_UNATTACKABLE = 0x20000000,                // Force allow attack target with flag: UNIT_STATE_UNATTACKABLE
+	UNIT_STATE_IGNORE_LOS = 0x40000000,
+	UNIT_STATE_UNATTACKABLE    = UNIT_STATE_IN_FLIGHT,
     // for real move using movegen check and stop (except unstoppable flight)
     UNIT_STATE_MOVING          = UNIT_STATE_ROAMING_MOVE | UNIT_STATE_CONFUSED_MOVE | UNIT_STATE_FLEEING_MOVE | UNIT_STATE_CHASE_MOVE | UNIT_STATE_FOLLOW_MOVE,
     UNIT_STATE_CONTROLLED      = (UNIT_STATE_CONFUSED | UNIT_STATE_STUNNED | UNIT_STATE_FLEEING),
@@ -2197,6 +2199,15 @@ class Unit : public WorldObject
 
         bool IsVisionObscured(Unit* victim);
 
+		// MOVEMENTFLAG_HOVER in some case will be targetable by ground creatures (like nucleus for blood prince council ICC)
+		inline void SetHoverGroundTargetable(bool s) { _hoverGroundTargetable = s; }
+		inline bool IsHoverGroundTargetable() { return _hoverGroundTargetable; }
+
+
+		// Done priotiy to setCanFly in script fix visual bug with movementflag (creature took flying animation on ground, walkin animation in air etc...)
+		inline void DisableMovementFlagUpdate(bool s) { _disableMovementFlagUpdate = s; }
+		inline bool IsMovementFlagUpdateDisable() { return _disableMovementFlagUpdate; }
+
         float GetPositionZMinusOffset() const;
 
         void SetControlled(bool apply, UnitState state);
@@ -2312,6 +2323,9 @@ class Unit : public WorldObject
         time_t GetLastDamagedTime() const { return _lastDamagedTime; }
         void SetLastDamagedTime(time_t val) { _lastDamagedTime = val; }
 
+		bool _hoverGroundTargetable; // make hover creature targetable by ground player/creature
+
+		bool _disableMovementFlagUpdate; // Disable dynamic update movementflag
         uint32 GetMovementCounter() const { return m_movementCounter; }
         void SetAutoattackOverrideSpell(SpellInfo const* spellInfo) { m_overrideAutoattackSpellInfo = spellInfo; }
         void SetAutoattackOverrideRange(uint32 range) { m_overrideAutoattackRange = range; }

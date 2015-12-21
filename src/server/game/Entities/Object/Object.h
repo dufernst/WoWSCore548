@@ -406,6 +406,26 @@ struct Position
         }
         return fmod(o, 2.0f * static_cast<float>(M_PI));
     }
+	void Add(Position a)
+	{
+		m_positionX += a.GetPositionX();
+		m_positionY += a.GetPositionY();
+		m_positionZ += a.GetPositionZ();
+	}
+
+	void Subtract(Position a)
+	{
+		m_positionX -= a.GetPositionX();
+		m_positionY -= a.GetPositionY();
+		m_positionZ -= a.GetPositionZ();
+	}
+
+	void Scale(float s)
+	{
+		m_positionX *= s;
+		m_positionY *= s;
+		m_positionZ *= s;
+	}
 };
 ByteBuffer& operator>>(ByteBuffer& buf, Position::PositionXYZOStreamer const& streamer);
 ByteBuffer& operator<<(ByteBuffer& buf, Position::PositionXYZStreamer const& streamer);

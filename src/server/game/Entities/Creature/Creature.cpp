@@ -2640,6 +2640,18 @@ void Creature::SetDisplayId(uint32 modelId)
     }
 }
 
+void Creature::DespawnCreaturesInArea(uint32 entry, float range)
+{
+	std::list<Creature*> creatures;
+	GetCreatureListWithEntryInGrid(creatures, entry, range);
+
+	if (creatures.empty())
+		return;
+
+	for (std::list<Creature*>::iterator iter = creatures.begin(); iter != creatures.end(); ++iter)
+		(*iter)->DespawnOrUnsummon();
+}
+
 void Creature::SetTarget(uint64 guid)
 {
     if (!_focusSpell)

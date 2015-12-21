@@ -529,7 +529,19 @@ void AddSC_boss_lockmaw_augh();
 void AddSC_boss_high_prophet_barim();
 void AddSC_boss_siamat();
 
+// The Vortex Pinnacle
+void AddSC_instance_the_vortex_pinnacle(); 
+void AddSC_the_vortex_pinnacle();
+void AddSC_boss_grand_vizier_ertan();
+void AddSC_boss_altairus();
+void AddSC_boss_asaad();
 
+
+// Throne of the Four Wind (CATA RAID)
+void AddSC_instance_throne_of_the_four_winds(); 
+void AddSC_throne_of_the_four_winds();
+void AddSC_boss_conclave_of_wind();
+void AddSC_boss_alakir();
 
 //Kalimdor Zones
 void AddSC_ashenvale();
@@ -1630,6 +1642,19 @@ void AddKalimdorScripts()
 	AddSC_boss_lockmaw_augh();
 	AddSC_boss_high_prophet_barim();
 	AddSC_boss_siamat();
+
+	// The Vortex Pinnacle
+	AddSC_instance_the_vortex_pinnacle(); 
+	AddSC_the_vortex_pinnacle();
+	AddSC_boss_grand_vizier_ertan();
+	AddSC_boss_altairus();
+	AddSC_boss_asaad();
+
+	// Throne of the Four Wind (CATA RAID)
+	AddSC_instance_throne_of_the_four_winds();
+	AddSC_throne_of_the_four_winds();
+	AddSC_boss_conclave_of_wind();
+	AddSC_boss_alakir();
 
 #endif
 }

@@ -183,6 +183,18 @@ set(scripts_STAT_SRCS
   Kalimdor/LostCityOfTheTolvir/lost_city_of_the_tolvir.cpp
   Kalimdor/LostCityOfTheTolvir/lost_city_of_the_tolvir.h 
 
+  Kalimdor/TheVortexPinnacle/boss_grand_vizier_ertan.cpp
+  Kalimdor/TheVortexPinnacle/boss_altairus.cpp
+  Kalimdor/TheVortexPinnacle/boss_asaad.cpp
+  Kalimdor/TheVortexPinnacle/instance_the_vortex_pinnacle.cpp
+  Kalimdor/TheVortexPinnacle/the_vortex_pinnacle.cpp
+  Kalimdor/TheVortexPinnacle/the_vortex_pinnacle.h
+  Kalimdor/ThroneoftheFourWinds/boss_alakir.cpp
+  Kalimdor/ThroneoftheFourWinds/boss_conclave_of_wind.cpp
+  Kalimdor/ThroneoftheFourWinds/instance_throne_of_the_four_winds.cpp
+  Kalimdor/ThroneoftheFourWinds/throne_of_the_four_winds.cpp
+  Kalimdor/ThroneoftheFourWinds/throne_of_the_four_winds.h
+ 
 )
 
 message("  -> Prepared: Kalimdor")
