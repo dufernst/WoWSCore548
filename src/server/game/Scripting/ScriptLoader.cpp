@@ -520,6 +520,17 @@ void AddSC_boss_isiset();
 void AddSC_boss_setesh();
 void AddSC_boss_rajh();
 
+
+// Lost City of the Tol'Vir
+void AddSC_instance_lost_city_of_the_tolvir(); 
+void AddSC_lost_city_of_the_tolvir();
+void AddSC_boss_general_husam();
+void AddSC_boss_lockmaw_augh();
+void AddSC_boss_high_prophet_barim();
+void AddSC_boss_siamat();
+
+
+
 //Kalimdor Zones
 void AddSC_ashenvale();
 void AddSC_azshara();
@@ -1545,11 +1556,7 @@ void AddKalimdorScripts()
 	AddSC_ungoro_crater();
 	AddSC_winterspring();
 
-	//halls of origination(CATA DUNGEON)
-	AddSC_instance_halls_of_origination();
-	AddSC_boss_temple_guardian_anhuur();
-	AddSC_boss_earthrager_ptah();
-	AddSC_boss_anraphet();
+	
 
 	//Firelands(CATA RAID)
 	AddSC_instance_firelands();
@@ -1604,7 +1611,7 @@ void AddKalimdorScripts()
 	AddSC_boss_ragnaros_firelands();
 
 
-	// Halls of Origination
+	// Halls of Origination (CATA DUNGEON)
 	AddSC_instance_halls_of_origination(); 
 	AddSC_halls_of_origination();
 	AddSC_boss_temple_guardian_anhuur();
@@ -1614,6 +1621,15 @@ void AddKalimdorScripts()
 	AddSC_boss_isiset();
 	AddSC_boss_setesh();
 	AddSC_boss_rajh();
+
+
+	// Lost City of the Tol'Vir(CATA DUNGEON)
+	AddSC_instance_lost_city_of_the_tolvir(); 
+	AddSC_lost_city_of_the_tolvir();
+	AddSC_boss_general_husam();
+	AddSC_boss_lockmaw_augh();
+	AddSC_boss_high_prophet_barim();
+	AddSC_boss_siamat();
 
 #endif
 }

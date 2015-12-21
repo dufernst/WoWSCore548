@@ -169,11 +169,17 @@ class ScriptRegistry
     if (!V) \
         return R;
 
+
+
+
 struct TSpellSummary
 {
     uint8 Targets;                                          // set of enum SelectTarget
     uint8 Effects;                                          // set of enum SelectEffect
-} *SpellSummary;
+
+}*SpellSummary;
+
+
 
 ScriptMgr::ScriptMgr()
     : _scriptCount(0), _scheduledScripts(0) { }
@@ -243,6 +249,81 @@ void ScriptMgr::LoadDatabase()
     sScriptSystemMgr->LoadScriptWaypoints();
 }
 
+void DoScriptText(int32 iTextEntry, WorldObject* pSource, Unit* target)
+{
+	if (!pSource)
+	{
+		TC_LOG_ERROR("server.loading", "TSCR: DoScriptText entry %i, invalid Source pointer.", iTextEntry);
+		return;
+	}
+
+	if (iTextEntry >= 0)
+	{
+		TC_LOG_ERROR("server.loading", "TSCR: DoScriptText with source entry %u (TypeId=%u, guid=%u) attempts to process text entry %i, but text entry must be negative.", pSource->GetEntry(), pSource->GetTypeId(), pSource->GetGUIDLow(), iTextEntry);
+		return;
+	}
+
+	const StringTextData* pData = sScriptSystemMgr->GetTextData(iTextEntry);
+
+	if (!pData)
+	{
+		TC_LOG_ERROR("server.loading", "TSCR: DoScriptText with source entry %u (TypeId=%u, guid=%u) could not find text entry %i.", pSource->GetEntry(), pSource->GetTypeId(), pSource->GetGUIDLow(), iTextEntry);
+		return;
+	}
+
+	TC_LOG_DEBUG("scripts", "TSCR: DoScriptText: text entry=%i, Sound=%u, Type=%u, Language=%u, Emote=%u", iTextEntry, pData->uiSoundId, pData->uiType, pData->uiLanguage, pData->uiEmote);
+
+	if (pData->uiSoundId)
+	{
+		if (sSoundEntriesStore.LookupEntry(pData->uiSoundId))
+			pSource->SendPlaySound(pData->uiSoundId, false);
+		else
+			TC_LOG_ERROR("server.loading", "TSCR: DoScriptText entry %i tried to process invalid sound id %u.", iTextEntry, pData->uiSoundId);
+	}
+
+	if (pData->uiEmote)
+	{
+		if (pSource->GetTypeId() == TYPEID_UNIT || pSource->GetTypeId() == TYPEID_PLAYER)
+			((Unit*)pSource)->HandleEmote(pData->uiEmote);
+		else
+			TC_LOG_ERROR("server.loading", "TSCR: DoScriptText entry %i tried to process emote for invalid TypeId (%u).", iTextEntry, pSource->GetTypeId());
+	}
+
+	switch (pData->uiType)
+	{
+	case CHAT_TYPE_SAY:
+		pSource->MonsterSay(iTextEntry, pData->uiLanguage, 0);
+		break;
+	case CHAT_TYPE_YELL:
+		pSource->MonsterYell(iTextEntry, pData->uiLanguage, 0);
+		break;
+	case CHAT_TYPE_TEXT_EMOTE:
+		pSource->MonsterTextEmote(iTextEntry, 0);
+		break;
+	case CHAT_TYPE_BOSS_EMOTE:
+		pSource->MonsterTextEmote(iTextEntry, 0, true);
+		break;
+	case CHAT_TYPE_WHISPER:
+	{
+		if (target && target->GetTypeId() == TYPEID_PLAYER)
+			pSource->MonsterWhisper(iTextEntry, 0);
+		else
+			TC_LOG_ERROR("server.loading", "TSCR: DoScriptText entry %i cannot whisper without target unit (TYPEID_PLAYER).", iTextEntry);
+
+		break;
+	}
+	case CHAT_TYPE_BOSS_WHISPER:
+	{
+		if (target && target->GetTypeId() == TYPEID_PLAYER)
+			pSource->MonsterWhisper(iTextEntry, 0);
+		else
+			TC_LOG_ERROR("server.loading", "TSCR: DoScriptText entry %i cannot whisper without target unit (TYPEID_PLAYER).", iTextEntry);
+
+		break;
+	}
+
+	}
+}
 void ScriptMgr::FillSpellSummary()
 {
     UnitAI::FillAISpellInfo();
