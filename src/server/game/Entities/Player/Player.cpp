@@ -18064,6 +18064,92 @@ void Player::KilledPlayerCredit()
     }
 }
 
+
+void Player::CastedCreatureOrGO(uint32 entry, uint64 guid, uint32 spell_id)
+{
+	bool isCreature = IS_CRE_OR_VEH_GUID(guid);
+
+	uint16 addCastCount = 1;
+	for (uint8 i = 0; i < MAX_QUEST_LOG_SIZE; ++i)
+	{
+		uint32 questid = GetQuestSlotQuestId(i);
+		if (!questid)
+			continue;
+
+		Quest const* qInfo = sObjectMgr->GetQuestTemplate(questid);
+		if (!qInfo)
+			continue;
+
+		QuestStatusData& q_status = m_QuestStatus[questid];
+
+		if (q_status.Status == QUEST_STATUS_INCOMPLETE)
+		{
+			if (qInfo->HasSpecialFlag(QUEST_SPECIAL_FLAGS_KILL_OR_CAST))
+			{
+				for (uint8 j = 0; j < QUEST_OBJECTIVES_COUNT; ++j)
+				{
+					// skip kill creature objective (0) or wrong spell casts
+					if (qInfo->RequiredSpellCast[j] != spell_id)
+						continue;
+
+					uint32 reqTarget = 0;
+
+					if (isCreature)
+					{
+						// creature activate objectives
+						if (qInfo->RequiredNpcOrGo[j] > 0)
+						{
+							// checked at quest_template loading
+							reqTarget = qInfo->RequiredNpcOrGo[j];
+							if (reqTarget != entry) // if entry doesn't match, check for killcredits referenced in template
+							{
+								CreatureTemplate const* cinfo = sObjectMgr->GetCreatureTemplate(entry);
+								if (!cinfo)
+								{
+									TC_LOG_ERROR("misc" ,"Player::CastedCreatureOrGO: GetCreatureTemplate failed for entry %u. Skipping.", entry);
+									continue;
+								}
+
+								for (uint8 k = 0; k < MAX_KILL_CREDIT; ++k)
+									if (cinfo->KillCredit[k] == reqTarget)
+										entry = cinfo->KillCredit[k];
+							}
+						}
+					}
+					else
+					{
+						// GO activate objective
+						if (qInfo->RequiredNpcOrGo[j] < 0)
+							// checked at quest_template loading
+							reqTarget = -qInfo->RequiredNpcOrGo[j];
+					}
+
+					// other not this creature/GO related objectives
+					if (reqTarget != entry)
+						continue;
+
+					uint32 reqCastCount = qInfo->RequiredNpcOrGoCount[j];
+					uint16 curCastCount = q_status.CreatureOrGOCount[j];
+					if (curCastCount < reqCastCount)
+					{
+						q_status.CreatureOrGOCount[j] = curCastCount + addCastCount;
+
+						m_QuestStatusSave[questid] = true;
+
+						SendQuestUpdateAddCreatureOrGo(qInfo, guid, j, curCastCount, addCastCount);
+					}
+
+					if (CanCompleteQuest(questid))
+						CompleteQuest(questid);
+
+					// same objective target can be in many active quests, but not in 2 objectives for single quest (code optimization).
+					break;
+				}
+			}
+		}
+	}
+}
+
 void Player::KillCreditGO(uint32 entry, uint64 guid)
 {
     // here to not break old scripts, this function should be removed at some point
@@ -18394,6 +18480,29 @@ void Player::SendPushToPartyResponse(Player* player, uint8 msg)
 
         TC_LOG_DEBUG("network", "WORLD: Sent SMSG_QUEST_PUSH_RESULT");
     }
+}
+
+void Player::SendQuestUpdateAddCreatureOrGo(Quest const* quest, uint64 guid, uint32 creatureOrGO_idx, uint16 old_count, uint16 add_count)
+{
+	ASSERT(old_count + add_count < 65536 && "mob/GO count store in 16 bits 2^16 = 65536 (0..65536)");
+
+	int32 entry = quest->RequiredNpcOrGo[creatureOrGO_idx];
+	if (entry < 0)
+		// client expected gameobject template id in form (id|0x80000000)
+		entry = (-entry) | 0x80000000;
+
+	WorldPacket data(SMSG_QUESTUPDATE_ADD_KILL, (4 * 4 + 8));
+	TC_LOG_DEBUG("network", "WORLD: Sent SMSG_QUESTUPDATE_ADD_KILL");
+	data << uint32(quest->GetQuestId());
+	data << uint32(entry);
+	data << uint32(old_count + add_count);
+	data << uint32(quest->RequiredNpcOrGoCount[creatureOrGO_idx]);
+	data << uint64(guid);
+	GetSession()->SendPacket(&data);
+
+	uint16 log_slot = FindQuestSlot(quest->GetQuestId());
+	if (log_slot < MAX_QUEST_LOG_SIZE)
+		SetQuestSlotCounter(log_slot, creatureOrGO_idx, GetQuestSlotCounter(log_slot, creatureOrGO_idx) + add_count);
 }
 
 void Player::SendQuestUpdateAddCredit(Quest const* quest, QuestObjective const* objective, ObjectGuid guid, uint16 oldCount, uint16 addCount)
