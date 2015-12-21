@@ -116,11 +116,16 @@ set(scripts_STAT_SRCS
   Kalimdor/OnyxiasLair/instance_onyxias_lair.cpp
   Kalimdor/RagefireChasm/instance_ragefire_chasm.cpp
   Kalimdor/DireMaul/instance_dire_maul.cpp
-  Kalimdor/HallsOfOrigination/halls_of_origination.h
-  Kalimdor/HallsOfOrigination/instance_halls_of_origination.cpp
   Kalimdor/HallsOfOrigination/boss_temple_guardian_anhuur.cpp
   Kalimdor/HallsOfOrigination/boss_earthrager_ptah.cpp
   Kalimdor/HallsOfOrigination/boss_anraphet.cpp
+  Kalimdor/HallsOfOrigination/boss_ammunae.cpp
+  Kalimdor/HallsOfOrigination/boss_setesh.cpp
+  Kalimdor/HallsOfOrigination/boss_isiset.cpp
+  Kalimdor/HallsOfOrigination/boss_rajh.cpp
+  Kalimdor/HallsOfOrigination/instance_halls_of_origination.cpp
+  Kalimdor/HallsOfOrigination/halls_of_origination.cpp
+  Kalimdor/HallsOfOrigination/halls_of_origination.h
   Kalimdor/Firelands/boss_shannox.cpp
   Kalimdor/Firelands/boss_lord_rhyolith.cpp
   Kalimdor/Firelands/boss_lord_rhyolith.h

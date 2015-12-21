@@ -509,6 +509,17 @@ void AddSC_boss_asira_dawnslayer();
 void AddSC_boss_archbishop_benedictus();
 
 
+// Halls of Origination
+void AddSC_instance_halls_of_origination();
+void AddSC_halls_of_origination();
+void AddSC_boss_temple_guardian_anhuur();
+void AddSC_boss_earthrager_ptah();
+void AddSC_boss_anraphet();
+void AddSC_boss_ammunae();
+void AddSC_boss_isiset();
+void AddSC_boss_setesh();
+void AddSC_boss_rajh();
+
 //Kalimdor Zones
 void AddSC_ashenvale();
 void AddSC_azshara();
@@ -1591,6 +1602,18 @@ void AddKalimdorScripts()
 	AddSC_boss_baleroc();
 	AddSC_boss_majordomo_staghelm();
 	AddSC_boss_ragnaros_firelands();
+
+
+	// Halls of Origination
+	AddSC_instance_halls_of_origination(); 
+	AddSC_halls_of_origination();
+	AddSC_boss_temple_guardian_anhuur();
+	AddSC_boss_earthrager_ptah();
+	AddSC_boss_anraphet();
+	AddSC_boss_ammunae();
+	AddSC_boss_isiset();
+	AddSC_boss_setesh();
+	AddSC_boss_rajh();
 
 #endif
 }
