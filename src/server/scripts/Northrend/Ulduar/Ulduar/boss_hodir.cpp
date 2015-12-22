@@ -189,7 +189,7 @@ class npc_flash_freeze : public CreatureScript
                 checkDespawnTimer = 1*IN_MILLISECONDS;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32  diff)
             {
 				if ((me->GetVictim() && me->GetVictim()->GetGUID() != targetGUID) || (instance && instance->GetBossState(BOSS_HODIR) != IN_PROGRESS))
                     me->DespawnOrUnsummon();
@@ -442,7 +442,7 @@ class boss_hodir : public CreatureScript
                 _JustDied();
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32  diff)
             {
                 if (!UpdateVictim() && me->getFaction() != 35)
                     return;
@@ -528,7 +528,7 @@ class boss_hodir : public CreatureScript
                 DoMeleeAttackIfReady();
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32  action)
             {
                 switch (action)
                 {
@@ -609,7 +609,7 @@ class npc_icicle : public CreatureScript
                 icicleTimer = 2500;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32  diff)
             {
                 if (icicleTimer <= diff)
                 {
@@ -658,7 +658,7 @@ class npc_snowpacked_icicle : public CreatureScript
                 despawnTimer = 12000;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32  diff)
             {
                 if (despawnTimer <= diff)
                 {
@@ -696,7 +696,7 @@ class npc_hodir_priest : public CreatureScript
                 events.ScheduleEvent(EVENT_DISPEL_MAGIC, urand(15000, 20000));
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32  diff)
             {
                 if (!UpdateVictim() || me->HasUnitState(UNIT_STATE_STUNNED) || me->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_STUNNED))
                     return;
@@ -772,7 +772,7 @@ class npc_hodir_shaman : public CreatureScript
                 events.ScheduleEvent(EVENT_STORM_CLOUD, urand(10000, 12500));
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim() || me->HasUnitState(UNIT_STATE_STUNNED) || me->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_STUNNED))
                     return;
@@ -845,7 +845,7 @@ class npc_hodir_druid : public CreatureScript
                 events.ScheduleEvent(EVENT_STARLIGHT, urand(15000, 17500));
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim() || me->HasUnitState(UNIT_STATE_STUNNED) || me->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_STUNNED))
                     return;
@@ -926,7 +926,7 @@ class npc_hodir_mage : public CreatureScript
                     summons.Despawn(summoned);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim() || me->HasUnitState(UNIT_STATE_STUNNED) || me->HasFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_STUNNED))
                     return;

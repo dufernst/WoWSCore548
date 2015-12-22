@@ -196,7 +196,7 @@ class boss_ignis : public CreatureScript
                     summons.Summon(summon);
             }
 
-            void DoAction(const int32 action)
+            void DoAction( int32 action)
             {
                 if (action != ACTION_REMOVE_BUFF)
                     return;
@@ -209,7 +209,7 @@ class boss_ignis : public CreatureScript
                 _firstConstructKill = secondKill;
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -355,7 +355,7 @@ class npc_iron_construct : public CreatureScript
                 DoCast(me, SPELL_FREEZE_ANIM, true);
             }
 
-            void UpdateAI(const uint32 /*uiDiff*/)
+            void UpdateAI(uint32 /*uiDiff*/)
             {
                 if (!UpdateVictim())
                     return;
@@ -433,7 +433,7 @@ class npc_scorch_ground : public CreatureScript
                 _heatTimer = 0;
             }
 
-            void UpdateAI(const uint32 uiDiff)
+            void UpdateAI(uint32 uiDiff)
             {
                 if (_heat)
                 {
