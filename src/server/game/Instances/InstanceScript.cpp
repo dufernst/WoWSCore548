@@ -335,6 +335,20 @@ void InstanceScript::DoResetAchievementCriteria(AchievementCriteriaTypes type, u
 }
 
 
+// Complete Achievement for all players in instance
+void InstanceScript::DoCompleteAchievement(uint32 achievement)
+{
+	AchievementEntry const* pAE = sAchievementStore.LookupEntry(achievement);
+	Map::PlayerList const &plrList = instance->GetPlayers();
+	if (!pAE)
+		return;
+
+	if (!plrList.isEmpty())
+		for (Map::PlayerList::const_iterator i = plrList.begin(); i != plrList.end(); ++i)
+			if (Player *pPlayer = i->GetSource())
+				pPlayer->CompletedAchievement(pAE);
+}
+
 // Update Achievement Criteria for all players in instance
 void InstanceScript::DoUpdateAchievementCriteria(AchievementCriteriaTypes type, uint32 miscValue1 /*= 0*/, uint32 miscValue2 /*= 0*/, Unit* unit /*= NULL*/)
 {

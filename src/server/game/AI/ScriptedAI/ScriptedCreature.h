@@ -43,7 +43,7 @@ public:
     explicit SummonList(Creature* creature)
         : me(creature)
     { }
-
+	
     // And here we see a problem of original inheritance approach. People started
     // to exploit presence of std::list members, so I have to provide wrappers
 
