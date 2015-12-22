@@ -240,7 +240,7 @@ class boss_ultraxion: public CreatureScript
                 return true;                
             }
 
-            void DoAction(const int32 action)
+            void DoAction( int32 action)
             {
                 if (action == ACTION_TWILIGHT_ERUPTION)
                 {
@@ -314,7 +314,7 @@ class boss_ultraxion: public CreatureScript
                     Talk(SAY_KILL);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI( uint32 diff)
             {
                 if (!UpdateVictim() && !phase)
                     return;

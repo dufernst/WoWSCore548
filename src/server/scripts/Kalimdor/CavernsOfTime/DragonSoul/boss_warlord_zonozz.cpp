@@ -323,7 +323,7 @@ class boss_warlord_zonozz: public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -490,7 +490,7 @@ class npc_warlord_zonozz_void_of_the_unmaking : public CreatureScript
                 events.ScheduleEvent(EVENT_CONTINUE, 5000);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32  diff)
             {
                 if (bExplode)
                     return;
@@ -677,7 +677,7 @@ class npc_warlord_zonozz_tentacle : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32  diff)
             {
                 if (!UpdateVictim())
                     return;

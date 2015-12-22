@@ -228,7 +228,7 @@ class boss_lord_rhyolith : public CreatureScript
                 instance->DoRemoveAurasDueToSpellOnPlayers(SPELL_BALANCE_BAR);
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 switch(action)
                 {
@@ -267,7 +267,7 @@ class boss_lord_rhyolith : public CreatureScript
                     Talk(SAY_KILL);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -609,7 +609,7 @@ class npc_lord_rhyolith_rhyolith : public CreatureScript
                     Talk(SAY_KILL);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI( uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -698,7 +698,7 @@ class npc_lord_rhyolith_right_foot : public CreatureScript
                     pInstance->SetData(DATA_RHYOLITH_HEALTH_SHARED, me->GetHealth() > damage ? me->GetHealth() - damage : 0);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -799,7 +799,7 @@ class npc_lord_rhyolith_left_foot : public CreatureScript
                     pInstance->SetData(DATA_RHYOLITH_HEALTH_SHARED, me->GetHealth() > damage ? me->GetHealth() - damage : 0);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -882,7 +882,7 @@ class npc_lord_rhyolith_volcano : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -972,7 +972,7 @@ class npc_lord_rhyolith_crater : public CreatureScript
                 events.ScheduleEvent(EVENT_MAGMA_FLOW, 20000);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1032,7 +1032,7 @@ class npc_lord_rhyolith_liquid_obsidian : public CreatureScript
                 events.ScheduleEvent(EVENT_START_MOVE, 2000);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI( uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1091,7 +1091,7 @@ class npc_lord_rhyolith_spark_of_rhyolith : public CreatureScript
                 events.ScheduleEvent(EVENT_START_MOVE, 2000);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1160,7 +1160,7 @@ class npc_lord_rhyolith_fragment_of_rhyolith : public CreatureScript
                         me->Kill(me);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;

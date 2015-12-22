@@ -212,7 +212,7 @@ class boss_queen_azshara : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -297,7 +297,7 @@ class npc_queen_azshara_enchanted_magus : public CreatureScript
                 me->SetReactState(REACT_PASSIVE);
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_ATTACK)
                 {
@@ -328,7 +328,7 @@ class npc_queen_azshara_enchanted_magus : public CreatureScript
                         DoCast(pPlayer, SPELL_BLADES_OF_ICE_DMG, true);
             }*/
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -421,7 +421,7 @@ class npc_queen_azshara_hammer_of_divinity : public CreatureScript
                 me->SetDisableGravity(true);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (bDespawn)
                     return;

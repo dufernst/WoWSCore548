@@ -223,7 +223,7 @@ class boss_morchok: public CreatureScript
                 return 0;
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                         return;
@@ -455,7 +455,7 @@ class npc_morchok_kohcrom: public CreatureScript
                 events.ScheduleEvent(EVENT_CONTINUE, 5000);
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -483,7 +483,7 @@ class npc_morchok_kohcrom: public CreatureScript
                 summons.Despawn(summon);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -577,7 +577,7 @@ class npc_morchok_resonating_crystal : public CreatureScript
                 events.ScheduleEvent(EVENT_EXPLODE, 10000);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 events.Update(diff);
 

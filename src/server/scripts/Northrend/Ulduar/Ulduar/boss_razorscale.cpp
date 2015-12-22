@@ -231,7 +231,7 @@ class boss_razorscale_controller : public CreatureScript
                 _JustDied();
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 if (instance->GetBossState(BOSS_RAZORSCALE) != IN_PROGRESS)
                     return;
@@ -266,7 +266,7 @@ class boss_razorscale_controller : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const Diff)
+            void UpdateAI(uint32 Diff)
             {
                 if (me->IsInCombat() && instance->GetBossState(BOSS_RAZORSCALE) != IN_PROGRESS)
                     EnterEvadeMode();
@@ -457,7 +457,7 @@ class boss_razorscale : public CreatureScript
                 return 0;
             }
 
-            void UpdateAI(uint32 const Diff)
+            void UpdateAI(uint32 Diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -636,7 +636,7 @@ class boss_razorscale : public CreatureScript
                 }
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -698,7 +698,7 @@ class npc_expedition_commander : public CreatureScript
                 summons.Summon(summoned);
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -718,7 +718,7 @@ class npc_expedition_commander : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const Diff)
+            void UpdateAI(uint32 Diff)
             {
                 if (AttackStartTimer <= Diff)
                 {
@@ -832,12 +832,12 @@ class npc_mole_machine_trigger : public CreatureScript
                 events.ScheduleEvent(EVENT_DISSAPPEAR, 10000);
             }
             
-            void DoAction(int32 const /*action*/)
+            void DoAction(int32 /*action*/)
             {
                 summons.DespawnAll();
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 events.Update(diff);
                 
@@ -963,7 +963,7 @@ class npc_darkrune_watcher : public CreatureScript
                 events.ScheduleEvent(EVENT_LIGHTING_BOLT, urand(1000, 3000));
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (_instance && _instance->GetBossState(BOSS_RAZORSCALE) != IN_PROGRESS)
                 {
@@ -1042,7 +1042,7 @@ class npc_darkrune_guardian : public CreatureScript
             }
 
 
-            void UpdateAI(uint32 const Diff)
+            void UpdateAI(uint32 Diff)
             {
                 if (_instance && _instance->GetBossState(BOSS_RAZORSCALE) != IN_PROGRESS)
                 {
@@ -1095,7 +1095,7 @@ class npc_darkrune_sentinel : public CreatureScript
                     events.ScheduleEvent(EVENT_WHIRLWIND, urand(20000, 25000));
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (_instance && _instance->GetBossState(BOSS_RAZORSCALE) != IN_PROGRESS)
                 {

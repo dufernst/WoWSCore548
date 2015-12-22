@@ -1185,13 +1185,13 @@ class npc_dragon_soul_thrall : public CreatureScript
             {
             }
 
-            void DoAction(const int32 action)
+            void DoAction( int32 action)
             {
                 if (action == ACTION_ULTRAXION_WIN)
                     events.ScheduleEvent(EVENT_TALK_ULTRAXION_WIN_1, 10000);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32  diff)
             {
                 events.Update(diff);
                 

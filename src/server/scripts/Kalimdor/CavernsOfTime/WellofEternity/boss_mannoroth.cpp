@@ -252,7 +252,7 @@ class boss_mannoroth : public CreatureScript
                 return bAchieve;
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_VAROTHEN_DIED)
                 {
@@ -275,7 +275,7 @@ class boss_mannoroth : public CreatureScript
                     damage = 0;
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -554,7 +554,7 @@ class npc_mannoroth_varothen : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -627,7 +627,7 @@ class npc_mannoroth_doomguard_debilitator : public CreatureScript
                     pTyrande->AI()->DoAction(8); // ACTION_DEBILITATING_OFF
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 events.Update(diff);
 

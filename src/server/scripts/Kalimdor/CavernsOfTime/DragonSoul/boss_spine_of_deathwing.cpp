@@ -171,7 +171,7 @@ class npc_spine_of_deathwing_deathwing : public CreatureScript
                 achieve = 0;
             }
 
-            void DoAction(const int32 action)
+            void DoAction( int32 action)
             {
                 switch (action)
                 {
@@ -251,7 +251,7 @@ class npc_spine_of_deathwing_deathwing : public CreatureScript
                     damage = 0;
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI( uint32 diff)
             {
                 events.Update(diff);
 
@@ -600,7 +600,7 @@ class npc_spine_of_deathwing_corruption : public CreatureScript
                 me->DespawnOrUnsummon(2000);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -696,7 +696,7 @@ class npc_spine_of_deathwing_hideous_amalgamation : public CreatureScript
                 }
             }*/
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_ABSORB_BLOOD)
                 {
@@ -774,7 +774,7 @@ class npc_spine_of_deathwing_hideous_amalgamation : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -903,7 +903,7 @@ class npc_spine_of_deathwing_corrupted_blood : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 events.Update(diff);
 
@@ -1035,7 +1035,7 @@ class npc_spine_of_deathwing_burning_tendons : public CreatureScript
                 me->DespawnOrUnsummon(1000);
             }
 
-            void UpdateAI(const uint32 diff) 
+            void UpdateAI(uint32 diff) 
             {
                 events.Update(diff);
 

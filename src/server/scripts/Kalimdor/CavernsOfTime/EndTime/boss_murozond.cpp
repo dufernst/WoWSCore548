@@ -153,7 +153,7 @@ class boss_murozond : public CreatureScript
                 events.ScheduleEvent(EVENT_INTRO_3, 48000);
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_HOURGLASS)
                 {
@@ -225,7 +225,7 @@ class boss_murozond : public CreatureScript
                     damage = 0;
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim() && phase != 1)
                     return;
@@ -403,7 +403,7 @@ class npc_murozond_mirror_image : public CreatureScript
                         m_owner = owner->ToPlayer();
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_HOURGLASS)
                 {
@@ -439,7 +439,7 @@ class npc_murozond_mirror_image : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32  diff)
             {
                 if (!pInstance || pInstance->GetBossState(DATA_MUROZOND) != IN_PROGRESS)
                 {
@@ -475,7 +475,7 @@ class npc_end_time_nozdormu : public CreatureScript
                 events.Reset();
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (!bTalk && action == ACTION_NOZDORMU)
                 {
@@ -489,7 +489,7 @@ class npc_end_time_nozdormu : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!bTalk)
                     return;

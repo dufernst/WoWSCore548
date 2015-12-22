@@ -398,7 +398,7 @@ class boss_mimiron : public CreatureScript
                 EncounterPostProgress();
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32  diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -736,7 +736,7 @@ class boss_mimiron : public CreatureScript
                 return 0;
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -955,7 +955,7 @@ class boss_leviathan_mk : public CreatureScript
                 }
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -991,7 +991,7 @@ class boss_leviathan_mk : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim() || _phase == PHASE_IDLE)
                     return;
@@ -1099,7 +1099,7 @@ class boss_leviathan_mk_turret : public CreatureScript
                     return 0;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1170,7 +1170,7 @@ class npc_proximity_mine : public CreatureScript
                         }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (_boomTimer <= diff)
                 {
@@ -1291,7 +1291,7 @@ class boss_vx_001 : public CreatureScript
                 _events.ScheduleEvent(EVENT_HEAT_WAVE, urand(8*IN_MILLISECONDS, 10*IN_MILLISECONDS), 0, PHASE_VX001_SOLO__GLOBAL_2);
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -1394,7 +1394,7 @@ class boss_vx_001 : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim() || _phase == PHASE_IDLE)
                     return;
@@ -1586,7 +1586,7 @@ class npc_rocket_strike : public CreatureScript
                 _casted = false;
             }
 
-            void UpdateAI(uint32 const /*diff*/)
+            void UpdateAI(uint32 /*diff*/)
             {
                 if (!_casted)
                 {
@@ -1726,7 +1726,7 @@ class boss_aerial_unit : public CreatureScript
                 AttackStartCaster(target, 100.0f);
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -1776,7 +1776,7 @@ class boss_aerial_unit : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim() || _phase == PHASE_IDLE)
                     return;
@@ -1942,7 +1942,7 @@ class npc_assault_bot : public CreatureScript
                 _fieldTimer = urand(4*IN_MILLISECONDS, 6*IN_MILLISECONDS);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -2003,7 +2003,7 @@ class npc_emergency_bot : public CreatureScript
                     DoCast(me, SPELL_DEAFENING_SIREN, true);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (_sprayTimer <= diff)
                 {
@@ -2083,7 +2083,7 @@ class npc_mimiron_bomb_bot : public CreatureScript
                 DoCast(me, SPELL_BOOM_BOT, true);
             }
 
-            void UpdateAI(const uint32 /*diff*/)
+            void UpdateAI(uint32 /*diff*/)
             {
                 if (!UpdateVictim())
                     return;
@@ -2176,7 +2176,7 @@ class npc_mimiron_flame_trigger : public CreatureScript
                     mimiron->AI()->DoAction(DO_INCREASE_FLAME_COUNT);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (_flameTimer <= diff)
                 {
@@ -2254,7 +2254,7 @@ class npc_mimiron_flame_spread : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const /*diff*/)
+            void UpdateAI(uint32 /*diff*/)
             {
                 if (_instance && _instance->GetBossState(BOSS_MIMIRON) != IN_PROGRESS)
                     me->DespawnOrUnsummon();
@@ -2292,7 +2292,7 @@ class npc_frost_bomb : public CreatureScript
                 _frostTimer = 10*IN_MILLISECONDS;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (_frostTimer <= diff)
                 {

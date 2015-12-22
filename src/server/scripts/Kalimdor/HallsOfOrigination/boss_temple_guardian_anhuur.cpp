@@ -160,7 +160,7 @@ class boss_temple_guardian_anhuur : public CreatureScript
                 return achieve;
             }
 
-            void DoAction(const int32 action)
+            void DoAction( int32 action)
             {
                 if (action == ACTION_ACTIVATE)
                 {
@@ -199,7 +199,7 @@ class boss_temple_guardian_anhuur : public CreatureScript
                         DoZoneInCombat(summon);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI( uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -296,7 +296,7 @@ class npc_pit_snake : public CreatureScript
                 events.ScheduleEvent(EVENT_POISON_TIPPED_FANGS, urand(2000, 8000));
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI( uint32 diff)
             {
                 if (!UpdateVictim())
                     return;

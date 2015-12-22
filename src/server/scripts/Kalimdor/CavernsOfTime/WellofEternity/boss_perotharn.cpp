@@ -154,7 +154,7 @@ class boss_perotharn : public CreatureScript
                 }
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_START)
                 {
@@ -221,7 +221,7 @@ class boss_perotharn : public CreatureScript
                 return bAchieve;
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -383,7 +383,7 @@ class npc_perotharn_eye_of_perotharn : public CreatureScript
                         events.ScheduleEvent(EVENT_NEXT_MOVE, 500);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;

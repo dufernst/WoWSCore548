@@ -605,7 +605,7 @@ class boss_madness_of_deathwing : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI( uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -941,7 +941,7 @@ class npc_dragon_soul_thrall_1 : public CreatureScript
                 pInstance = me->GetInstanceScript();
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_CHECK_PLAYERS)
                     events.ScheduleEvent(EVENT_CHECK_PLAYERS, 5000);
@@ -965,7 +965,7 @@ class npc_dragon_soul_thrall_1 : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 events.Update(diff);
 
@@ -1139,7 +1139,7 @@ class npc_madness_of_deathwing_mutated_corruption : public CreatureScript
                 events.Reset();
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_CRUSH)
                     events.ScheduleEvent(EVENT_CRUSH_1, 500);
@@ -1152,7 +1152,7 @@ class npc_madness_of_deathwing_mutated_corruption : public CreatureScript
                 events.ScheduleEvent(EVENT_SELECT_VICTIM, 5000);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1350,7 +1350,7 @@ class npc_madness_of_deathwing_limb_tentacle : public CreatureScript
                     tentacles--;
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_ASSAULT_ASPECTS_FIRST)
                 {
@@ -1413,7 +1413,7 @@ class npc_madness_of_deathwing_limb_tentacle : public CreatureScript
                 me->DespawnOrUnsummon(2000);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1615,7 +1615,7 @@ class npc_madness_of_deathwing_regenerative_blood : public CreatureScript
                 me->DespawnOrUnsummon(2000);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1745,7 +1745,7 @@ class npc_madness_of_deathwing_elementium_bolt : public CreatureScript
                 me->DespawnOrUnsummon(1000);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!isSlow && me->FindNearestCreature(NPC_TIME_ZONE, 15.0f, true))
                 {
@@ -1809,7 +1809,7 @@ class npc_madness_of_deathwing_corrupting_parasite : public CreatureScript
                 events.Reset();
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_PARASITIC_BACKSLASH && !m_unstable)
                 {
@@ -1823,7 +1823,7 @@ class npc_madness_of_deathwing_corrupting_parasite : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 events.Update(diff);
 
@@ -1932,7 +1932,7 @@ class npc_madness_of_deathwing_deathwing : public CreatureScript
                 phase = 0;
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 events.Update(diff);
 
@@ -2041,7 +2041,7 @@ class npc_madness_of_deathwing_impaling_tentacle : public CreatureScript
                     }
                 }
             }
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -2117,7 +2117,7 @@ class npc_madness_of_deathwing_elementium_terror : public CreatureScript
                 events.ScheduleEvent(EVENT_START_MOVE, 1000);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -2196,7 +2196,7 @@ class npc_madness_of_deathwing_congealing_blood : public CreatureScript
                         events.ScheduleEvent(EVENT_CONGEALING_BLOOD_HEAL, 1);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -2283,7 +2283,7 @@ class npc_dragon_soul_alexstrasza_dragon : public CreatureScript
                 }
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (isActive && action == ACTION_CAUTERIZE)
                     events.ScheduleEvent(EVENT_CAUTERIZE, 2000);
@@ -2298,7 +2298,7 @@ class npc_dragon_soul_alexstrasza_dragon : public CreatureScript
                     pThrall->AI()->DoAction(ACTION_RESET_BATTLE);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 events.Update(diff);
 
@@ -2381,7 +2381,7 @@ class npc_dragon_soul_nozdormu_dragon : public CreatureScript
                 }
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (isActive && action == ACTION_TIME_ZONE)
                 {
@@ -2411,7 +2411,7 @@ class npc_dragon_soul_nozdormu_dragon : public CreatureScript
                 summons.Despawn(summon);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 events.Update(diff);
 
@@ -2639,7 +2639,7 @@ class npc_madness_of_deathwing_jump_pad : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!spellId)
                     return;

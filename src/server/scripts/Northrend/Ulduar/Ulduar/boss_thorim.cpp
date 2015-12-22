@@ -307,7 +307,7 @@ class npc_thorim_controller : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (_instance && _instance->GetBossState(BOSS_THORIM) == DONE)
                     return;
@@ -555,7 +555,7 @@ class boss_thorim : public CreatureScript
                         doNotStandInTheLighting = false;
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -677,7 +677,7 @@ class boss_thorim : public CreatureScript
                 return 0;
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -943,7 +943,7 @@ class npc_thorim_pre_phase_add : public CreatureScript
                     ScriptedAI::AttackStart(target);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1177,7 +1177,7 @@ class npc_thorim_arena_phase_add : public CreatureScript
                 Reset();
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1309,7 +1309,7 @@ class npc_runic_colossus : public CreatureScript
                     _instance->SetData(DATA_RUNIC_DOOR, GO_STATE_ACTIVE);
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -1343,7 +1343,7 @@ class npc_runic_colossus : public CreatureScript
                 me->InterruptNonMeleeSpells(true);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (_phase == PHASE_COLOSSUS_IDLE || (!UpdateVictim() && _phase != PHASE_RUNIC_SMASH))
                     return;
@@ -1435,7 +1435,7 @@ class npc_runic_smash : public CreatureScript
                 ExplodeTimer = data;
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (ExplodeTimer <= diff)
                 {
@@ -1519,7 +1519,7 @@ class npc_ancient_rune_giant : public CreatureScript
                     _instance->SetData(DATA_STONE_DOOR, GO_STATE_ACTIVE);
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1588,7 +1588,7 @@ class npc_sif : public CreatureScript
                 _events.ScheduleEvent(EVENT_TELEPORT, urand(20*IN_MILLISECONDS, 35*IN_MILLISECONDS));
             }
 
-            void DoAction(int32 const action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -1603,7 +1603,7 @@ class npc_sif : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1676,7 +1676,7 @@ class npc_lightning_orb : public CreatureScript
                 me->GetMotionMaster()->MovePath(NPC_LIGHTNING_ORB, false);
             }
 
-            void UpdateAI(uint32 const /*diff*/) {}
+            void UpdateAI(uint32  /*diff*/) {}
         };
 
         CreatureAI* GetAI(Creature* creature) const
@@ -1715,7 +1715,7 @@ class npc_thorim_combat_trigger : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const diff)
+            void UpdateAI(uint32 diff)
             {
                 _events.Update(diff);
 
