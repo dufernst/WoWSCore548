@@ -495,7 +495,7 @@ public:
                     player->FailQuest(QUEST_UNEXPECTED_RESULT);
         }
 
-        void UpdateAI(uint32 const diff)
+        void updateai(uint32 const diff)
         {
             if (KillCount >= 3 && PlayerGUID)
                 if (Player* player = Unit::GetPlayer(*me, PlayerGUID))

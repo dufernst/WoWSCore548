@@ -342,7 +342,7 @@ class npc_well_of_eternity_nozdormu : public CreatureScript
                 pInstance->SetData(DATA_EVENT_NOZDORMU, IN_PROGRESS);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!bTalk)
                     return;
@@ -461,7 +461,7 @@ class npc_well_of_eternity_legion_demon : public CreatureScript
                                 pPlayer->CastSpell(me, SPELL_ARCHIVED_DEMON_1, true);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -605,13 +605,13 @@ class npc_well_of_eternity_illidan_1 : public CreatureScript
                 }
             }
 
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 if (action == ACTION_PEROTHARN_DEAD)
                     events.ScheduleEvent(EVENT_ILLIDAN_OUTRO_1_1, 6000);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!bTalk)
                     return;
@@ -695,7 +695,7 @@ class npc_well_of_eternity_eternal_champion : public CreatureScript
                 events.ScheduleEvent(EVENT_SHIMMERING_STRIKE, urand(9000, 12000));
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -754,7 +754,7 @@ class npc_well_of_eternity_eye_of_legion : public CreatureScript
                 events.ScheduleEvent(EVENT_FEL_FLAMES, urand(2000, 10000));
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -821,7 +821,7 @@ class npc_well_of_eternity_enchanted_highmistress : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -915,7 +915,7 @@ class npc_well_of_eternity_royal_handmaiden : public CreatureScript
                                 pPlayer->CastSpell(me, SPELL_ARCHIVED_HANDMAIDEN_1, true);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1124,7 +1124,7 @@ class npc_well_of_eternity_illidan_2 : public CreatureScript
                 }
             }
 
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 if (action == ACTION_DOOMGUARD_DIED)
                 {
@@ -1159,7 +1159,7 @@ class npc_well_of_eternity_illidan_2 : public CreatureScript
 
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!bTalk && !bMove)
                     return;
@@ -1315,7 +1315,7 @@ class npc_well_of_eternity_tyrande : public CreatureScript
                     }
             }
 
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 switch (action)
                 {
@@ -1404,7 +1404,7 @@ class npc_well_of_eternity_tyrande : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 events.Update(diff);
 
@@ -1524,7 +1524,7 @@ class npc_well_of_eternity_abyssal_doombringer : public CreatureScript
                 me->DespawnOrUnsummon(3000);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;

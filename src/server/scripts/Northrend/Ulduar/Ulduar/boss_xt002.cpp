@@ -233,7 +233,7 @@ class boss_xt002 : public CreatureScript
                     instance->DoStartTimedAchievement(ACHIEVEMENT_TIMED_TYPE_EVENT, ACHIEV_MUST_DECONSTRUCT_FASTER);
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 switch (action)
                 {
@@ -297,7 +297,7 @@ class boss_xt002 : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI( uint32 diff)
             {
                 if (!UpdateVictim() || !CheckInRoom())
                     return;
@@ -544,7 +544,7 @@ class mob_scrapbot : public CreatureScript
                     me->GetMotionMaster()->MoveFollow(pXT002, 0.0f, 0.0f);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (rangeCheckTimer <= diff)
                 {
@@ -611,7 +611,7 @@ class mob_pummeller : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI( uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -729,7 +729,7 @@ class mob_boombot : public CreatureScript
                 }
             }
 
-            void UpdateAI(uint32 const /*diff*/)
+            void UpdateAI(uint32  /*diff*/)
             {
                 if (!UpdateVictim())
                     return;
@@ -767,7 +767,7 @@ class mob_life_spark : public CreatureScript
                 shockTimer = 0; // first one is immediate.
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -810,7 +810,7 @@ class mob_void_zone : public CreatureScript
                 consumptionTimer = 3*IN_MILLISECONDS;
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (consumptionTimer <= diff)
                 {

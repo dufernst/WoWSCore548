@@ -134,7 +134,7 @@ class npc_air_warden : public CreatureScript
                     pInstance->SetData(DATA_WARDENS, 1);
             }
         
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -211,7 +211,7 @@ class npc_flame_warden : public CreatureScript
                     pInstance->SetData(DATA_WARDENS, 1);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -291,7 +291,7 @@ class npc_water_warden : public CreatureScript
                     pInstance->SetData(DATA_WARDENS, 1);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -368,7 +368,7 @@ class npc_earth_warden : public CreatureScript
                     pInstance->SetData(DATA_WARDENS, 1);
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -433,7 +433,7 @@ class npc_water_warden_water_bubble : public CreatureScript
                 me->DespawnOrUnsummon();
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!me->GetOwner())
                     me->DespawnOrUnsummon();
@@ -498,7 +498,7 @@ class npc_halls_of_origination_brann_bronzebeard : public CreatureScript
                 events.Reset();
             }
 
-            void DoAction(const int32 action)
+            void doaction(const int32 action)
             {
                 switch (action)
                 {
@@ -520,7 +520,7 @@ class npc_halls_of_origination_brann_bronzebeard : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {        
                 events.Update(diff);
 

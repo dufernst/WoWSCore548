@@ -362,7 +362,7 @@ public:
             }
         }
 
-        void UpdateAI(const uint32 diff) 
+		void updateai(const uint32 diff)
         {
             if (!UpdateVictim())
                 return;
@@ -393,7 +393,7 @@ public:
             DoMeleeAttackIfReady();
         }
 
-        void DoAction(int32 const param) 
+        void doaction(int32 const param) 
         {
             switch (param)
             {
@@ -494,7 +494,7 @@ public:
             me->UpdateAttackPowerAndDamage();
         }
 
-        void UpdateAI(const uint32 diff) 
+		void updateai(const uint32 diff)
         {
             _events.Update(diff);
 
@@ -872,7 +872,7 @@ public:
             }
         }
 
-        void DoAction(int32 const param) 
+        void doaction(int32 const param) 
         {
             switch (param)
             {

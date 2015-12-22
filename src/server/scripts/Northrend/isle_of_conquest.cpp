@@ -108,7 +108,7 @@ class boss_isle_of_conquest : public CreatureScript
                     EnterEvadeMode();
             }
             
-            void UpdateAI(const uint32 diff)
+			void updateai(const uint32 diff)
             {
                 if (!UpdateVictim())
                     return;

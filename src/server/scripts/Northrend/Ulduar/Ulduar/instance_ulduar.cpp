@@ -1351,7 +1351,7 @@ class npc_ironwork_cannon : public CreatureScript
                     me->AI()->AttackStart(who);
             }
 
-            void UpdateAI(uint32 const diff)
+			void updateai(uint32 const diff)
             {
                 if (!UpdateVictim())
                     return;

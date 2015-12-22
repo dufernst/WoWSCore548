@@ -234,7 +234,7 @@ class boss_warmaster_blackhorn: public CreatureScript
                 instance->SetBossState(DATA_BLACKHORN, IN_PROGRESS);
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_START_BATTLE)
                 {
@@ -357,7 +357,7 @@ class boss_warmaster_blackhorn: public CreatureScript
                     Talk(SAY_KILL);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -577,7 +577,7 @@ class npc_warmaster_blackhorn_goriona: public CreatureScript
                     DoZoneInCombat(summon);
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_GORIONA_MOVE)
                 {
@@ -619,7 +619,7 @@ class npc_warmaster_blackhorn_goriona: public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -786,7 +786,7 @@ class npc_warmaster_blackhorn_twilight_assault_drake: public CreatureScript
                 events.ScheduleEvent(EVENT_TWILIGHT_BARRAGE, urand(23000, 28000));
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_HARPOON_END)
                 {
@@ -880,7 +880,7 @@ class npc_warmaster_blackhorn_twilight_assault_drake: public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -969,7 +969,7 @@ class npc_warmaster_blackhorn_twilight_elite_dreadblade_slayer: public CreatureS
                 return (size * size) >= pTarget->GetExactDist2dSq(startPos.GetPositionX() + std::cos(angle) * dist, startPos.GetPositionY() + std::sin(angle) * dist);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1039,7 +1039,7 @@ class npc_warmaster_blackhorn_skyfire_harpoon_gun: public CreatureScript
                 drakeEntry = ((me->GetPositionY() < -12130.f) ? NPC_TWILIGHT_ASSAULT_DRAKE_1 : NPC_TWILIGHT_ASSAULT_DRAKE_2);
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_HARPOON)
                 {
@@ -1056,7 +1056,7 @@ class npc_warmaster_blackhorn_skyfire_harpoon_gun: public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 events.Update(diff);
 
@@ -1147,7 +1147,7 @@ class npc_warmaster_blackhorn_twilight_infiltrator: public CreatureScript
                 events.ScheduleEvent(EVENT_DESPAWN_INFILTRATOR, 19000);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1211,7 +1211,7 @@ class npc_warmaster_blackhorn_twilight_sapper: public CreatureScript
                 events.ScheduleEvent(EVENT_CONTINUE, 1500);
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 if (!UpdateVictim())
                     return;
@@ -1509,7 +1509,7 @@ class npc_dragon_soul_sky_captain_swayze : public CreatureScript
                 summons.Despawn(summon);
             }
 
-            void DoAction(const int32 action)
+            void DoAction(int32 action)
             {
                 if (action == ACTION_START)
                 {
@@ -1537,7 +1537,7 @@ class npc_dragon_soul_sky_captain_swayze : public CreatureScript
                 }
             }
 
-            void UpdateAI(const uint32 diff)
+            void UpdateAI(uint32 diff)
             {
                 events.Update(diff);
 
