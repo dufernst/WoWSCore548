@@ -1739,6 +1739,51 @@ void Unit::DealMeleeDamage(CalcDamageInfo* damageInfo, bool durabilityLoss)
     }
 }
 
+// This does the trick in correctly selecting what to use :D.
+void Unit::HandleEmote(uint32 emote_id)
+{
+	if (!emote_id)
+		HandleEmoteState(EMOTE_ONESHOT_NONE);
+	else
+	{
+		if (EmotesEntry const* emoteEntry = sEmotesStore.LookupEntry(emote_id))
+		{
+			if (emoteEntry->EmoteType) // 1, 2 Emote States, 0 ONESHOT animations play.
+			{
+				// If the creature already has this state return.
+				if (GetEmoteState() == emote_id && GetTypeId() == TYPEID_UNIT)
+					return;
+
+				if (GetTypeId() == TYPEID_PLAYER)
+				{
+					// When a player types in the same /read emote again, he cancels it. Acts like a toggle.
+					if (GetStoredEmoteState() && GetStoredEmoteState() == emote_id && emote_id == EMOTE_STATE_READ)
+					{
+						HandleEmoteState(EMOTE_ONESHOT_NONE);
+						SetStoredEmoteState(EMOTE_ONESHOT_NONE);
+					}
+					else
+					{
+						HandleEmoteState(emote_id);
+						if (emote_id == EMOTE_STATE_READ || emote_id == EMOTE_STATE_DANCE)
+							SetStoredEmoteState(emote_id);
+					}
+				}
+				else
+					HandleEmoteState(emote_id);
+			}
+			else
+				HandleEmoteCommand(emote_id);
+		}
+	}
+}
+
+// The UNIT_NPC_EMOTESTATE field is used for Emote States now.
+void Unit::HandleEmoteState(uint32 emote_id)
+{
+	SetUInt32Value(UNIT_FIELD_NPC_EMOTESTATE, emote_id);
+}
+
 void Unit::HandleEmoteCommand(uint32 anim_id)
 {
 	if (GetUInt32Value(UNIT_FIELD_NPC_EMOTESTATE) == 483)
@@ -3909,21 +3954,20 @@ void Unit::RemoveAurasDueToSpell(uint32 spellId, uint64 casterGUID, uint32 reqEf
     }
 }
 
-void Unit::RemoveAuraFromStack(uint32 spellId, uint64 casterGUID, AuraRemoveMode removeMode)
+void Unit::RemoveAuraFromStack(uint32 spellId, uint64 casterGUID, AuraRemoveMode removeMode, int32 num) //changed this for future use.
 {
-    AuraMapBoundsNonConst range = m_ownedAuras.equal_range(spellId);
-    for (AuraMap::iterator iter = range.first; iter != range.second;)
-    {
-        Aura* aura = iter->second;
-        if ((aura->GetType() == UNIT_AURA_TYPE)
-                && (!casterGUID || aura->GetCasterGUID() == casterGUID))
-        {
-            aura->ModStackAmount(-1, removeMode);
-            return;
-        }
-        else
-            ++iter;
-    }
+	for (AuraMap::iterator iter = m_ownedAuras.lower_bound(spellId); iter != m_ownedAuras.upper_bound(spellId);)
+	{
+		Aura* aura = iter->second;
+		if ((aura->GetType() == UNIT_AURA_TYPE)
+			&& (!casterGUID || aura->GetCasterGUID() == casterGUID))
+		{
+			aura->ModStackAmount(-num, removeMode);
+			return;
+		}
+		else
+			++iter;
+	}
 }
 
 void Unit::RemoveAurasDueToSpellByDispel(uint32 spellId, uint32 dispellerSpellId, uint64 casterGUID, Unit* dispeller, uint8 chargesRemoved/*= 1*/)
@@ -13230,6 +13274,19 @@ uint32 Unit::MeleeDamageBonusDone(Unit* victim, uint32 pdamage, WeaponAttackType
 
     // bonus result can be negative
     return uint32(std::max(tmpDamage, 0.0f));
+}
+
+void Unit::ApplyUberImmune(uint32 spellid, bool apply)
+{
+	if (apply)
+		RemoveAurasWithMechanic(IMMUNE_TO_MOVEMENT_IMPAIRMENT_AND_LOSS_CONTROL_MASK, AURA_REMOVE_BY_DEFAULT, spellid);
+	for (uint32 mech = MECHANIC_CHARM; mech != MECHANIC_ENRAGED; ++mech)
+	{
+		if (mech == MECHANIC_DISARM)
+			continue;
+		if (1 << mech & IMMUNE_TO_MOVEMENT_IMPAIRMENT_AND_LOSS_CONTROL_MASK)
+			ApplySpellImmune(spellid, IMMUNITY_MECHANIC, mech, apply);
+	}
 }
 
 uint32 Unit::MeleeDamageBonusTaken(Unit* attacker, uint32 pdamage, WeaponAttackType attType, SpellInfo const* spellProto)

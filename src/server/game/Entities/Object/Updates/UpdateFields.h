@@ -102,7 +102,8 @@ enum EUnitFields
     UNIT_FIELD_MIN_OFF_HAND_DAMAGE                           = OBJECT_END + 0x42, // Size: 1, Flags: UF_FLAG_PRIVATE, UF_FLAG_OWNER, UF_FLAG_EMPATH
     UNIT_FIELD_MAX_OFF_HAND_DAMAGE                           = OBJECT_END + 0x43, // Size: 1, Flags: UF_FLAG_PRIVATE, UF_FLAG_OWNER, UF_FLAG_EMPATH
     UNIT_FIELD_ANIM_TIER                                     = OBJECT_END + 0x44, // Size: 1, Flags: UF_FLAG_PUBLIC
-    UNIT_FIELD_PET_NUMBER                                    = OBJECT_END + 0x45, // Size: 1, Flags: UF_FLAG_PUBLIC
+	UNIT_FIELD_BYTES_1                                       = OBJECT_END + 68, // size 1, flags MIRROR_ALL
+	UNIT_FIELD_PET_NUMBER                                    = OBJECT_END + 0x45, // Size: 1, Flags: UF_FLAG_PUBLIC
     UNIT_FIELD_PET_NAME_TIMESTAMP                            = OBJECT_END + 0x46, // Size: 1, Flags: UF_FLAG_PUBLIC
     UNIT_FIELD_PET_EXPERIENCE                                = OBJECT_END + 0x47, // Size: 1, Flags: UF_FLAG_OWNER
     UNIT_FIELD_PET_NEXT_LEVEL_EXPERIENCE                     = OBJECT_END + 0x48, // Size: 1, Flags: UF_FLAG_OWNER

@@ -25,8 +25,10 @@
 #include "InstanceScript.h"
 
 #define CAST_PLR(a)     (dynamic_cast<Player*>(a))
+#define CAST_CRE(a)     (dynamic_cast<Creature*>(a))
 #define CAST_AI(a, b)   (dynamic_cast<a*>(b))
 
+#define GET_SPELL(a)    (const_cast<SpellInfo*>(sSpellMgr->GetSpellInfo(a)))
 class InstanceScript;
 
 class SummonList
@@ -41,7 +43,7 @@ public:
     explicit SummonList(Creature* creature)
         : me(creature)
     { }
-
+	
     // And here we see a problem of original inheritance approach. People started
     // to exploit presence of std::list members, so I have to provide wrappers
 
@@ -405,6 +407,25 @@ class BossAI : public ScriptedAI
             return false;
         }
 
+		bool CheckInArea(const uint32 diff, uint32 areaId) //use this for bosses that should evade if your not close to them.
+		{
+			if (_checkareaTimer <= diff)
+				_checkareaTimer = 3000;
+			else
+			{
+				_checkareaTimer -= diff;
+				return true;
+			}
+
+			if (me->GetAreaId() != areaId)
+			{
+				EnterEvadeMode();
+				return false;
+			}
+
+			return true;
+		}
+
         bool CheckBoundary(Unit* who);
         void TeleportCheaters();
 
@@ -414,6 +435,7 @@ class BossAI : public ScriptedAI
     private:
         BossBoundaryMap const* const _boundary;
         uint32 const _bossId;
+		uint32 _checkareaTimer;
 };
 
 class WorldBossAI : public ScriptedAI

@@ -178,6 +178,12 @@ class InstanceScript : public ZoneScript
         // Send Notify to all players in instance
         void DoSendNotifyToInstance(char const* format, ...);
 
+		// Reset Achievement Criteria
+		void DoResetAchievementCriteria(AchievementCriteriaTypes type, uint64 miscValue1 = 0, uint64 miscValue2 = 0, bool evenIfCriteriaComplete = false);
+
+		// Complete Achievement for all players in instance
+		void DoCompleteAchievement(uint32 achievement);
+
         // Update Achievement Criteria for all players in instance
         void DoUpdateAchievementCriteria(AchievementCriteriaTypes type, uint32 miscValue1 = 0, uint32 miscValue2 = 0, Unit* unit = NULL);
 
@@ -187,6 +193,30 @@ class InstanceScript : public ZoneScript
 
         // Remove Auras due to Spell on all players in instance
         void DoRemoveAurasDueToSpellOnPlayers(uint32 spell);
+
+
+		// Add aura on all players in instance
+		void DoAddAuraOnPlayers(uint32 spell);
+
+
+		// Remove aura from stack on all players in instance
+		void DoRemoveAuraFromStackOnPlayers(uint32 spell, uint64 casterGUID = 0, AuraRemoveMode mode = AURA_REMOVE_BY_DEFAULT, uint32 num = 1);
+
+		void DoModifyPlayerCurrencies(uint32 id, int32 value);
+
+
+		// dosetAlternatePoweronplayers
+		void DoSetAlternatePowerOnPlayers(int32 value);
+
+
+		//Dostartmovie
+		void DoStartMovie(uint32 movieId);
+
+		//dokilledmonstercredit
+		void DoKilledMonsterKredit(uint32 questId, uint32 entry, uint64 guid = 0);
+
+		//Donearteleportplayers
+		void DoNearTeleportPlayers(const Position pos, bool casting = false);
 
         // Cast spell on all players in instance
         void DoCastSpellOnPlayers(uint32 spell);

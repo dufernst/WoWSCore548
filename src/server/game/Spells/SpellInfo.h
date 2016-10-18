@@ -580,6 +580,9 @@ public:
 	bool _IsNeedDelay() const;
     bool IsCustomCheckedForHolyPower() const;
 
+
+	// correction helpers
+	void SetDurationIndex(uint32 index);
     // unloading helpers
     void _UnloadImplicitTargetConditionLists();
 };

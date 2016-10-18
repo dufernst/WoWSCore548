@@ -1,22 +1,4 @@
-/*
- * Copyright (C) 2011-2015 Project SkyFire <http://www.projectskyfire.org/>
- * Copyright (C) 2008-2015 TrinityCore <http://www.trinitycore.org/>
- * Copyright (C) 2005-2015 MaNGOS <http://getmangos.com/>
- * Copyright (C) 2006-2014 ScriptDev2 <https://github.com/scriptdev2/scriptdev2/>
- *
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the
- * Free Software Foundation; either version 3 of the License, or (at your
- * option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
- * more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+
 
 /* ScriptData
 SDName: Stranglethorn_Vale
@@ -26,31 +8,29 @@ SDCategory: Stranglethorn Vale
 EndScriptData */
 
 /* ContentData
-npc_yenniku
+mob_yenniku
 EndContentData */
 
 #include "ScriptMgr.h"
 #include "ScriptedCreature.h"
-#include "Player.h"
-#include "SpellInfo.h"
 
 /*######
-## npc_yenniku
+## mob_yenniku
 ######*/
 
-class npc_yenniku : public CreatureScript
+class mob_yenniku : public CreatureScript
 {
 public:
-    npc_yenniku() : CreatureScript("npc_yenniku") { }
+    mob_yenniku() : CreatureScript("mob_yenniku") { }
 
-    CreatureAI* GetAI(Creature* creature) const override
+    CreatureAI* GetAI(Creature* creature) const
     {
-        return new npc_yennikuAI(creature);
+        return new mob_yennikuAI (creature);
     }
 
-    struct npc_yennikuAI : public ScriptedAI
+    struct mob_yennikuAI : public ScriptedAI
     {
-        npc_yennikuAI(Creature* creature) : ScriptedAI(creature)
+        mob_yennikuAI(Creature* creature) : ScriptedAI(creature)
         {
             bReset = false;
         }
@@ -58,22 +38,20 @@ public:
         uint32 Reset_Timer;
         bool bReset;
 
-        void Reset() override
+        void Reset()
         {
             Reset_Timer = 0;
-            me->SetUInt32Value(UNIT_FIELD_NPC_EMOTESTATE, EMOTE_STATE_NONE);
+            me->HandleEmote(EMOTE_STATE_NONE);
         }
 
-        void SpellHit(Unit* caster, const SpellInfo* spell) override
+        void SpellHit(Unit* caster, const SpellInfo* spell)
         {
-            if (bReset || spell->Id != 3607)
-                return;
-
-            if (Player* player = caster->ToPlayer())
+            if (caster->GetTypeId() == TYPEID_PLAYER)
             {
-                if (player->GetQuestStatus(592) == QUEST_STATUS_INCOMPLETE) //Yenniku's Release
+                                                                //Yenniku's Release
+                if (!bReset && CAST_PLR(caster)->GetQuestStatus(592) == QUEST_STATUS_INCOMPLETE && spell->Id == 3607)
                 {
-                    me->SetUInt32Value(UNIT_FIELD_NPC_EMOTESTATE, EMOTE_STATE_STUN);
+                    me->HandleEmote(EMOTE_STATE_STUN);
                     me->CombatStop();                   //stop combat
                     me->DeleteThreatList();             //unsure of this
                     me->setFaction(83);                 //horde generic
@@ -82,11 +60,12 @@ public:
                     Reset_Timer = 60000;
                 }
             }
+            return;
         }
 
-        void EnterCombat(Unit* /*who*/) override { }
+        void EnterCombat(Unit* /*who*/) {}
 
-        void UpdateAI(uint32 diff) override
+        void updateai(const uint32 diff)
         {
             if (bReset)
             {
@@ -97,14 +76,14 @@ public:
                     me->setFaction(28);                     //troll, bloodscalp
                     return;
                 }
-
-                Reset_Timer -= diff;
+                else Reset_Timer -= diff;
 
                 if (me->IsInCombat() && me->GetVictim())
                 {
-                    if (Player* player = me->GetVictim()->ToPlayer())
+					if (me->GetVictim()->GetTypeId() == TYPEID_PLAYER)
                     {
-                        if (player->GetTeam() == HORDE)
+						Unit* victim = me->GetVictim();
+                        if (CAST_PLR(victim)->GetTeam() == HORDE)
                         {
                             me->CombatStop();
                             me->DeleteThreatList();
@@ -122,11 +101,192 @@ public:
     };
 };
 
-/*######
-##
-######*/
+#define QUEST_TAUREN_PIRATE     26630
+#define GOSSIP_CHOICE_1 "Bossy, I need to ask something great of you. I need to cut off your head to prove my loyalty to the Bloodsail Buccaneers, so they will allow me to infiltrate their ranks and hopefully discover their true intentions. Booty Bay needs you, Bossy... now more than ever."
+#define GOSSIP_CHOICE_2 "Moo."
+#define GOSSIP_CHOICE_3 "<Do the deed.>"
+#define GOSSIP_CHOICE_4 "<Chicken out.>"
+
+class mob_bossy : public CreatureScript
+{
+public:
+    mob_bossy() : CreatureScript("mob_bossy") { }
+
+    CreatureAI* GetAI(Creature* creature) const
+    {
+        return new mob_bossyAI (creature);
+    }
+
+    bool OnGossipHello(Player* player, Creature* creature)
+        {
+            if (player->GetQuestStatus(QUEST_TAUREN_PIRATE) == QUEST_STATUS_INCOMPLETE)
+            {
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_CHOICE_1, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_CHOICE_2, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 2);
+                player->SEND_GOSSIP_MENU(2, creature->GetGUID());
+            }
+
+            return true;
+        }
+
+    bool OnGossipSelect(Player* player, Creature* creature, uint32 /*sender*/, uint32 action)
+    {
+        player->PlayerTalkClass->ClearMenus();
+
+        switch (action)
+        {
+            case GOSSIP_ACTION_INFO_DEF + 1:
+                if (player->GetQuestStatus(QUEST_TAUREN_PIRATE) == QUEST_STATUS_INCOMPLETE)
+                {
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_CHOICE_3, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 3);
+                    player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_CHOICE_4, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 4);
+                    player->SEND_GOSSIP_MENU(2, creature->GetGUID());
+                }
+                break;
+            case GOSSIP_ACTION_INFO_DEF +3:
+                player->CLOSE_GOSSIP_MENU();
+                if (player->GetQuestStatus(QUEST_TAUREN_PIRATE) == QUEST_STATUS_INCOMPLETE)
+                {
+                    creature->CastSpell(player, 81311, true);
+                }
+                break;
+            default:
+                player->CLOSE_GOSSIP_MENU();
+                break;
+        }
+
+        return true;
+    }
+
+    struct mob_bossyAI : public ScriptedAI
+    {
+        mob_bossyAI(Creature* creature) : ScriptedAI(creature)
+        {
+        }
+
+        void Reset()
+        {
+        }
+
+		void updateai(const uint32 diff)
+        {
+        }
+    };
+};
+
+#define GOSSIP_CHOICE_5 "I need an extra-large pirate hat. Seahorn's orders."
+
+class mob_narkk : public CreatureScript
+{
+public:
+    mob_narkk() : CreatureScript("mob_narkk") { }
+
+    CreatureAI* GetAI(Creature* creature) const
+    {
+        return new mob_narkkAI (creature);
+    }
+
+    bool OnGossipHello(Player* player, Creature* creature)
+        {
+            if (player->GetQuestStatus(QUEST_TAUREN_PIRATE) == QUEST_STATUS_INCOMPLETE)
+            {
+                player->ADD_GOSSIP_ITEM(GOSSIP_ICON_CHAT, GOSSIP_CHOICE_5, GOSSIP_SENDER_MAIN, GOSSIP_ACTION_INFO_DEF + 1);
+                player->SEND_GOSSIP_MENU(2, creature->GetGUID());
+            }
+            return true;
+        }
+
+    bool OnGossipSelect(Player* player, Creature* creature, uint32 /*sender*/, uint32 action)
+    {
+        player->PlayerTalkClass->ClearMenus();
+
+        switch (action)
+        {
+            case GOSSIP_ACTION_INFO_DEF + 1:
+                if (player->GetQuestStatus(QUEST_TAUREN_PIRATE) == QUEST_STATUS_INCOMPLETE)
+                {
+                    creature->CastSpell(player, 81315, true);
+                }
+                break;
+            default:
+                player->CLOSE_GOSSIP_MENU();
+                break;
+        }
+
+        return true;
+    }
+
+    struct mob_narkkAI : public ScriptedAI
+    {
+        mob_narkkAI(Creature* creature) : ScriptedAI(creature)
+        {
+        }
+
+        void Reset()
+        {
+        }
+
+		void updateai(const uint32 diff)
+        {
+        }
+    };
+};
+
+#define GOSSIP_CHOICE_6 "Do you have the items I asked you ?"
+
+class mob_fleet_master_seahorn : public CreatureScript
+{
+public:
+    mob_fleet_master_seahorn() : CreatureScript("mob_fleet_master_seahorn") { }
+
+    CreatureAI* GetAI(Creature* creature) const
+    {
+        return new mob_fleet_master_seahornAI (creature);
+    }
+
+    bool OnGossipSelect(Player* player, Creature* creature, uint32 /*sender*/, uint32 action)
+    {
+        player->PlayerTalkClass->ClearMenus();
+
+        switch (action)
+        {
+            case 1:
+                if (player->HasItemCount(59148, 1) && player->HasItemCount(59147, 1))
+                {
+                    if (player->GetQuestStatus(QUEST_TAUREN_PIRATE) == QUEST_STATUS_INCOMPLETE)
+                    {
+                        player->KilledMonsterCredit(2487, 0);
+                    }
+                }
+                break;
+            default:
+                player->CLOSE_GOSSIP_MENU();
+                break;
+        }
+
+        return true;
+    }
+
+    struct mob_fleet_master_seahornAI : public ScriptedAI
+    {
+        mob_fleet_master_seahornAI(Creature* creature) : ScriptedAI(creature)
+        {
+        }
+
+        void Reset()
+        {
+        }
+
+		void updateai(const uint32 diff)
+        {
+        }
+    };
+};
 
 void AddSC_stranglethorn_vale()
 {
-    new npc_yenniku();
+    new mob_yenniku();
+    new mob_bossy();
+    new mob_narkk();
+    new mob_fleet_master_seahorn();
 }

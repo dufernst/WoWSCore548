@@ -590,6 +590,7 @@ class Creature : public Unit, public GridObject<Creature>, public MapObject
         void RemoveCorpse(bool setSpawnTime = true);
 
         void DespawnOrUnsummon(uint32 msTimeToDespawn = 0);
+		void DespawnCreaturesInArea(uint32 entry, float range = 125.0f);
 
         time_t const& GetRespawnTime() const { return m_respawnTime; }
         time_t GetRespawnTimeEx() const;
@@ -597,6 +598,8 @@ class Creature : public Unit, public GridObject<Creature>, public MapObject
         void Respawn(bool force = false);
         void SaveRespawnTime();
 
+		uint32 GetRemoveCorpseDelay() const { return m_corpseRemoveTime; }
+		void SetRemoveCorpseDelay(uint32 delay) { m_corpseRemoveTime = delay; }
         uint32 GetRespawnDelay() const { return m_respawnDelay; }
         void SetRespawnDelay(uint32 delay) { m_respawnDelay = delay; }
 
@@ -715,7 +718,7 @@ class Creature : public Unit, public GridObject<Creature>, public MapObject
         bool CanAlwaysSee(WorldObject const* obj) const;
 		uint64 uiSeerGUID;
 
-    private:
+    public:
         void ForcedDespawn(uint32 timeMSToDespawn = 0);
 
         //WaypointMovementGenerator vars

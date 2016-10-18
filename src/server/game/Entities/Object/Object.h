@@ -406,6 +406,26 @@ struct Position
         }
         return fmod(o, 2.0f * static_cast<float>(M_PI));
     }
+	void Add(Position a)
+	{
+		m_positionX += a.GetPositionX();
+		m_positionY += a.GetPositionY();
+		m_positionZ += a.GetPositionZ();
+	}
+
+	void Subtract(Position a)
+	{
+		m_positionX -= a.GetPositionX();
+		m_positionY -= a.GetPositionY();
+		m_positionZ -= a.GetPositionZ();
+	}
+
+	void Scale(float s)
+	{
+		m_positionX *= s;
+		m_positionY *= s;
+		m_positionZ *= s;
+	}
 };
 ByteBuffer& operator>>(ByteBuffer& buf, Position::PositionXYZOStreamer const& streamer);
 ByteBuffer& operator<<(ByteBuffer& buf, Position::PositionXYZStreamer const& streamer);
@@ -812,7 +832,17 @@ class WorldObject : public Object, public WorldLocation
 };
 
 namespace Trinity
-{
+{   
+	template<class T>
+	void RandomResizeList(std::list<T> &_list, uint32 _size)
+	{
+		while (_list.size() > _size)
+		{
+			typename std::list<T>::iterator itr = _list.begin();
+			advance(itr, urand(0, _list.size() - 1));
+			_list.erase(itr);
+		}
+	}
     // Binary predicate to sort WorldObjects based on the distance to a reference WorldObject
     class ObjectDistanceOrderPred
     {

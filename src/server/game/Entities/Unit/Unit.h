@@ -546,6 +546,7 @@ enum UnitState
     UNIT_STATE_POSSESSED       = 0x00010000,
     UNIT_STATE_CHARGING        = 0x00020000,
     UNIT_STATE_JUMPING         = 0x00040000,
+	UNIT_STATE_ONVEHICLE       = 0x00080000,
     UNIT_STATE_MOVE            = 0x00100000,
     UNIT_STATE_ROTATING        = 0x00200000,
     UNIT_STATE_EVADE           = 0x00400000,
@@ -555,7 +556,9 @@ enum UnitState
     UNIT_STATE_CHASE_MOVE      = 0x04000000,
     UNIT_STATE_FOLLOW_MOVE     = 0x08000000,
     UNIT_STATE_IGNORE_PATHFINDING = 0x10000000,                 // do not use pathfinding in any MovementGenerator
-    UNIT_STATE_UNATTACKABLE    = UNIT_STATE_IN_FLIGHT,
+	UNIT_STATE_IGNORE_UNATTACKABLE = 0x20000000,                // Force allow attack target with flag: UNIT_STATE_UNATTACKABLE
+	UNIT_STATE_IGNORE_LOS = 0x40000000,
+	UNIT_STATE_UNATTACKABLE    = UNIT_STATE_IN_FLIGHT,
     // for real move using movegen check and stop (except unstoppable flight)
     UNIT_STATE_MOVING          = UNIT_STATE_ROAMING_MOVE | UNIT_STATE_CONFUSED_MOVE | UNIT_STATE_FLEEING_MOVE | UNIT_STATE_CHASE_MOVE | UNIT_STATE_FOLLOW_MOVE,
     UNIT_STATE_CONTROLLED      = (UNIT_STATE_CONFUSED | UNIT_STATE_STUNNED | UNIT_STATE_FLEEING),
@@ -1579,7 +1582,11 @@ class Unit : public WorldObject
                                      uint32 spellTypeMask, uint32 spellPhaseMask, uint32 hitMask, Spell* spell,
                                      DamageInfo* damageInfo, HealInfo* healInfo);
         void TriggerAurasProcOnEvent(ProcEventInfo& eventInfo, AuraApplicationList& procAuras);
-
+		void HandleEmote(uint32 emote_id);
+		void HandleEmoteState(uint32 emote_id);
+		uint32 GetStoredEmoteState() { return m_oldEmoteState; }
+		uint32 GetEmoteState() { return GetUInt32Value(UNIT_FIELD_NPC_EMOTESTATE); }
+		void SetStoredEmoteState(uint32 emoteState) { m_oldEmoteState = emoteState; }
         void HandleEmoteCommand(uint32 anim_id);
         void AttackerStateUpdate (Unit* victim, WeaponAttackType attType = BASE_ATTACK, bool extra = false);
 
@@ -1864,7 +1871,7 @@ class Unit : public WorldObject
         void RemoveAura(Aura* aur, AuraRemoveMode mode = AURA_REMOVE_BY_DEFAULT);
 
         void RemoveAurasDueToSpell(uint32 spellId, uint64 casterGUID = 0, uint32 reqEffMask = 0, AuraRemoveMode removeMode = AURA_REMOVE_BY_DEFAULT);
-        void RemoveAuraFromStack(uint32 spellId, uint64 casterGUID = 0, AuraRemoveMode removeMode = AURA_REMOVE_BY_DEFAULT);
+		void RemoveAuraFromStack(uint32 spellId, uint64 casterGUID = 0, AuraRemoveMode removeMode = AURA_REMOVE_BY_DEFAULT, int32 num = 1);
         void RemoveAurasDueToSpellByDispel(uint32 spellId, uint32 dispellerSpellId, uint64 casterGUID, Unit* dispeller, uint8 chargesRemoved = 1);
         void RemoveAurasDueToSpellBySteal(uint32 spellId, uint64 casterGUID, Unit* stealer);
         void RemoveAurasDueToItemSpell(uint32 spellId, uint64 castItemGuid);
@@ -2135,6 +2142,7 @@ class Unit : public WorldObject
 
         uint32 GetRemainingPeriodicAmount(uint64 caster, uint32 spellId, AuraType auraType, uint8 effectIndex = 0) const;
 
+		void ApplyUberImmune(uint32 spellid, bool apply);
         void ApplySpellImmune(uint32 spellId, uint32 op, uint32 type, bool apply);
         void ApplySpellDispelImmunity(const SpellInfo* spellProto, DispelType type, bool apply);
         virtual bool IsImmunedToSpell(SpellInfo const* spellInfo) const; // redefined in Creature
@@ -2190,6 +2198,15 @@ class Unit : public WorldObject
         bool IsSplineEnabled() const;
 
         bool IsVisionObscured(Unit* victim);
+
+		// MOVEMENTFLAG_HOVER in some case will be targetable by ground creatures (like nucleus for blood prince council ICC)
+		inline void SetHoverGroundTargetable(bool s) { _hoverGroundTargetable = s; }
+		inline bool IsHoverGroundTargetable() { return _hoverGroundTargetable; }
+
+
+		// Done priotiy to setCanFly in script fix visual bug with movementflag (creature took flying animation on ground, walkin animation in air etc...)
+		inline void DisableMovementFlagUpdate(bool s) { _disableMovementFlagUpdate = s; }
+		inline bool IsMovementFlagUpdateDisable() { return _disableMovementFlagUpdate; }
 
         float GetPositionZMinusOffset() const;
 
@@ -2306,6 +2323,9 @@ class Unit : public WorldObject
         time_t GetLastDamagedTime() const { return _lastDamagedTime; }
         void SetLastDamagedTime(time_t val) { _lastDamagedTime = val; }
 
+		bool _hoverGroundTargetable; // make hover creature targetable by ground player/creature
+
+		bool _disableMovementFlagUpdate; // Disable dynamic update movementflag
         uint32 GetMovementCounter() const { return m_movementCounter; }
         void SetAutoattackOverrideSpell(SpellInfo const* spellInfo) { m_overrideAutoattackSpellInfo = spellInfo; }
         void SetAutoattackOverrideRange(uint32 range) { m_overrideAutoattackRange = range; }
@@ -2418,6 +2438,9 @@ class Unit : public WorldObject
         bool IsAlwaysDetectableFor(WorldObject const* seer) const;
 
         void DisableSpline();
+
+
+		uint32 m_oldEmoteState; // Used to store and restore old emote states for creatures.
 
     private:
         bool IsTriggeredAtSpellProcEvent(Unit* victim, Aura* aura, SpellInfo const* procSpell, uint32 procFlag, uint32 procExtra, WeaponAttackType attType, bool isVictim, bool active, SpellProcEventEntry const* & spellProcEvent);
